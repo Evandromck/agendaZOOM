@@ -1,0 +1,9 @@
+# php -- BEGIN cPanel-generated handler, do not edit
+<IfModule fcgid_module>
+    <IfModule mime_module>
+        AddHandler fcgid-script .php .php7 .phtml
+        FcgidWrapper /usr/local/cpanel/cgi-sys/ea-php56 .php
+        FcgidWrapper /usr/local/cpanel/cgi-sys/ea-php56 .php7
+        FcgidWrapper /usr/local/cpanel/cgi-sys/ea-php56 .phtml
+    </IfModule>
+</IfModule>
