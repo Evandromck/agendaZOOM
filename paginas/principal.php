@@ -489,7 +489,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     title: '<?=  $row_events['title'] ?>', // sigla no calendário
                     setor: '<?= $row_events['setor'] ?>',
                     status: '<?= $row_events['status'] ?>',
-                    aud: '<?= $row_events['aud'] ?>',
+                    aud: '<?= $row_events['aud'] ?>',                    
                     solicitante: '<?= $row_events['solicitante'] ?>',
                     observacao: '<?= $row_events['obs'] ?>',
                     tsinal: '<?= $row_events['tsinal'] ?>',
@@ -498,6 +498,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     local: '<?= $row_events['local'] ?>',
                     sigla: '<?= $row_events['sigla'] ?>',
                     formato: '<?= $row_events['formato'] ?>',
+                    audEmerj: '<?= $row_events['audEmerj'] ?>',
 
 
 
@@ -1312,80 +1313,32 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
 
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <i class="material-icons"></i>
                             <label for="inputEmail3" class="col-sm-3 control-label">Local</label>
                             <div class="col-sm-6">
-                                <!-- <input type="text" class="form-control" name="local" id="local"
-                                    placeholder="Informe o local do seu evento "> -->
-
-                                    <select name="aud" class="form-control" id="aud">
-                                    <?php 
-
-                                if( $userDepartamento == "DETEC") { ?>
-                                <option value="FERIADO.Feriado">Auditório</option>
-                                
-                                <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
-                                <option value="PRO300_10.pro300_10">Pro 300_10</option>
-                                <option value="PRO300_11.pro300_11">Pro 300_11</option>
-                                <option value="PRO300_12.pro300_12">Pro 300_12</option>
-                                <option value="PRO300_13.pro300_13">Pro 300_13</option>
-                                <option value="PRO300_14.pro300_14">Pro 300_14</option>
-                                <option value="PRO300_15.pro300_15">Pro 300_15</option>
-                                <option value="PRO300_17.pro300_17">Pro 300_17</option>
-                                <option value="PRO300_18.pro300_18">Pro 300_18</option>
-                                <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
-
-                                <?php } elseif ($userDepartamento == "DEAMA" ) { ?>
-
-                                <option value="PRO300_17.pro300_17">Pro 300_17</option>
-                                <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
-
-
-
-                                <?php } elseif ($userDepartamento == "GABINETE" ) { ?>
-                                <option value="PRO300_18.pro300_18">Pro 300_18</option>
-                                <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                <!--   <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
-                                <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
-
-
-
-                                <?php } elseif ($userDepartamento == "DEDES" ) { ?>
-                                <option value="PRO300_10.pro300_10">Pro 300_10</option>
-                                <option value="PRO300_11.pro300_11">Pro 300_11</option>
-                                <option value="PRO300_12.pro300_12">Pro 300_12</option>
-                                <!--<option value="PRO500_07.pro500_07">Pro 500_07</option>-->
-                                <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                <!--  <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
-                                <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
-
-
-
-                                <?php } elseif ($userDepartamento == "DENSE" ) { ?>
-                                <option value="PRO300_14.pro300_14">Pro 300_14</option>
-                                <option value="PRO300_15.pro300_15">Pro 300_15</option>
-                                <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
-
-                                <?php } elseif ($userDepartamento == "DINSE" ) { ?>
-                                <option value="PRO300_13.pro300_13">Pro 300_13</option>
-                                <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
-
-
-                                <?php } elseif ($nivelLogado == 7 ) { ?>
-                                <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
-
-                                <?php } ?>
-                            </select>
-                                    
+                                <input type="text" class="form-control" name="local" id="local"
+                                    placeholder="Informe o local do seu evento ">
                             </div>
-                        </div>
+                        </div> -->
+
+                    <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Auditório  </label>                            
+                    <div class="col-sm-6">
+                    <select name="audEmerj" class="form-control" id="audEmerj" 
+                        <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
+                        <option value="AUDITÓRIO ANTONIO CARLOS AMORIM">Antonio Carlos Amorim  </option>
+                        <option value=" AUDITÓRIO DES. NELSON RIBEIRO ALVES">Des. Nelson Ribeiro Alves </option>
+                        <option value="AUDITÓRIO DES. PAULO ROBERTO LEITE VENTURA">Des. Paulo Roberto Ventura </option>
+                        <option value="AUDITÓRIO DES. JOAQUIM ANTÔNIO DE VIZEU PENALVA SANTOS">Des. Joaquim A. Penalva Santos</option>
+                        <option value="0">Não se aplica</option>
+                    </select>
+                    <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>
 
                 </div>
 
 
-
+                        </div>
 
 
                 <div class="modal-footer" style="background:#0c344c">
