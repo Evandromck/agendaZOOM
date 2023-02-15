@@ -500,10 +500,6 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     formato: '<?= $row_events['formato'] ?>',
                     audEmerj: '<?= $row_events['audEmerj'] ?>',
 
-
-
-
-
                     <?php
                            //para não exibir hora inicial do feriado, não pode ter início e fim diferentes e allDay deve ser true
                             if($row_events['sigla'] == 'FERIADO'){
@@ -1322,20 +1318,19 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                             </div>
                         </div> -->
 
-                    <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
-                    <div class="col-sm-6">
-                    <select name="audEmerj" class="form-control" id="audEmerj" 
-                        <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
-                        <option value="AUDITÓRIO ANTONIO CARLOS AMORIM">Antonio Carlos Amorim  </option>
-                        <option value=" AUDITÓRIO DES. NELSON RIBEIRO ALVES">Des. Nelson Ribeiro Alves </option>
-                        <option value="AUDITÓRIO DES. PAULO ROBERTO LEITE VENTURA">Des. Paulo Roberto Ventura </option>
-                        <option value="AUDITÓRIO DES. JOAQUIM ANTÔNIO DE VIZEU PENALVA SANTOS">Des. Joaquim A. Penalva Santos</option>
-                        <option value="0">Não se aplica</option>
-                    </select>
-                    <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>
-
-                </div>
+                                        <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
+                                        <div class="col-sm-6">
+                                        <select name="audEmerj" class="form-control" id="audEmerj" 
+                                            <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
+                                            <option value="AUDITÓRIO ANTONIO CARLOS AMORIM">Antonio Carlos Amorim  </option>
+                                            <option value=" AUDITÓRIO DES. NELSON RIBEIRO ALVES">Des. Nelson Ribeiro Alves </option>
+                                            <option value="AUDITÓRIO DES. PAULO ROBERTO LEITE VENTURA">Des. Paulo Roberto Ventura </option>
+                                            <option value="AUDITÓRIO DES. JOAQUIM ANTÔNIO DE VIZEU PENALVA SANTOS">Des. Joaquim A. Penalva Santos</option>
+                                            <option value="0">Não se aplica</option>
+                                        </select>
+                                        <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>
+                                        </div>
 
 
                         </div>
@@ -1347,6 +1342,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     </button>
                 </div>
                 </form>
+            </div>
             </div>
         </div>
     </div>
