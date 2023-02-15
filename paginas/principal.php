@@ -1323,7 +1323,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                         </div> -->
 
                     <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-3 control-label">Auditório  </label>                            
+                    <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
                     <div class="col-sm-6">
                     <select name="audEmerj" class="form-control" id="audEmerj" 
                         <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
