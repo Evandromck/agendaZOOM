@@ -240,6 +240,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                 $el.popover({
                     title: eventObj.title,
                     content: eventObj.aud,
+                    
 
 
                     trigger: 'hover',
@@ -251,6 +252,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
             events: [{
                 title: 'title',
                 content: 'aud',
+                
 
 
             }, ],
@@ -443,6 +445,8 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
                 $('#visualizar #local').text(event.local);
                 $('#visualizar #local').val(event.local);
+                $('#visualizar #audEmerj').text(event.audEmerj);
+                $('#visualizar #audEmerj').val(event.audEmerj);
                 $('#visualizar #formatEnvent').text(event.formato);
                 $('#visualizar #formato').val(formatEnvent);
 
@@ -834,13 +838,13 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <dt>Licença Zoom:</dt>
                                 <dd id="audExibir"></dd>
                                 <dt>Transmissão:</dt>
-                                <dd id="tsinalx"></dd>
-                                <dt>Local</dt>
-                                <dd id="local"></dd>
-                                <dt>Formato</dt>
-                                <dd id="formatEnvent"></dd>
-
-
+                                <dd id="tsinalx"></dd> 
+                                <dt>Formato:</dt>
+                                <dd id="formatEnvent"></dd>                               
+                                <dt>Local:</dt>
+                                <dd id="local"></dd>                                
+                                <dt>Auditório:</dt>
+                                <dd id="audEmerj"></dd>
                             </div>
                             <div id="ocultObs">
                                 <dt>Cancelado por:</dt>
@@ -1085,14 +1089,29 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
 
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <i class="material-icons"></i>
                         <label for="inputEmail3" class="col-sm-3 control-label">Local:</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="local" id="local" placeholder="Local">
                         </div>
                     </div>
+                     -->
 
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
+                                        <div class="col-sm-6">
+                                        <select name="audEmerj" class="form-control" id="audEmerj" 
+                                            <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
+                                            <option value="AUDITÓRIO ANTONIO CARLOS AMORIM">Antonio Carlos Amorim  </option>
+                                            <option value=" AUDITÓRIO DES. NELSON RIBEIRO ALVES">Des. Nelson Ribeiro Alves </option>
+                                            <option value="AUDITÓRIO DES. PAULO ROBERTO LEITE VENTURA">Des. Paulo Roberto Ventura </option>
+                                            <option value="AUDITÓRIO DES. JOAQUIM ANTÔNIO DE VIZEU PENALVA SANTOS">Des. Joaquim A. Penalva Santos</option>
+                                            <option value="0">Não se aplica</option>
+                                        </select>
+                                        <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>
+                                        </div>
+                                     </div>
 
 
 
@@ -1102,7 +1121,8 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                         <button type="button" class="btn btn-canc-edit btn-default glyphicon glyphicon-arrow-left">
                             Voltar</button>
                         <button type="submit" class="btn btn-default glyphicon glyphicon-floppy-disk"> Salvar
-                            Alterações</button>
+                            Alterações
+                        </button>
                     </div>
                 </form>
             </div>
@@ -1316,7 +1336,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <input type="text" class="form-control" name="local" id="local"
                                     placeholder="Informe o local do seu evento ">
                             </div>
-                        </div> -->
+                        </div>  -->
 
                                         <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
@@ -1331,9 +1351,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                         </select>
                                         <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>
                                         </div>
-
-
-                        </div>
+                                     </div>
 
 
                 <div class="modal-footer" style="background:#0c344c">
