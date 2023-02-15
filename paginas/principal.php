@@ -405,9 +405,11 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
 
                 var sigla = event.sigla;
+                var emerj = event.audEmerj
                 var audsigla = sigla + "." + event.aud;
                 var tsinalx = event.tsinal + "." + event.tsinal2;
                 var formatEnvent = event.formato;
+                var emerj = event.audEmerj;
                 // var dtCadastro= date('Y-m-d H:i:s');
                 // var dataCadastro = dtCadastro;
 
@@ -422,6 +424,9 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                 $('#visualizar #evento').val(event.evento);
                 $('#visualizar #start').text(event.start.format('DD/MM/YYYY HH:mm'));
                 $('#visualizar #start').val(event.start.format('DD/MM/YYYY HH:mm'));
+                
+                
+                
                 if (event.status == 5) {
                     //se evento for feriado, o end não pode ser diferente do start		
                     $('#visualizar #end').text(event.start.format('DD/MM/YYYY HH:mm'));
@@ -431,23 +436,24 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     $('#visualizar #end').val(event.end.format('DD/MM/YYYY HH:mm'));
                 }
                 $('#visualizar #statusExibir').val(statusText); // statusexibir - visualizar eventos
-                $('#visualizar #statusExibir').text(
-                    statusText); // statusexibir - visualizar eventos
+                $('#visualizar #statusExibir').text(statusText); // statusexibir - visualizar eventos
                 $('#visualizar #dataCadastro').text(event.dataCadastro);
                 $('#visualizar #audExibir').text(event.aud); //nome do auditorio por extenso
                 $('#visualizar #aud').val(audsigla);
+                
 
-                $('#visualizar #tsinalx').text(event
-                    .tsinal); // conmentei para aparecer a recuperação na tela do editar
+                $('#visualizar #tsinalx').text(event.tsinal); // conmentei para aparecer a recuperação na tela do editar
                 $('#visualizar #tsinal').val(tsinalx);
 
                 $('#visualizar #local').text(event.local);
                 $('#visualizar #local').val(event.local);
+                $('#visualizar #audEmerj').text(event.audEmerj);
+                $('#visualizar #audEmerj').val(emerj);
+                
                 $('#visualizar #formatEnvent').text(event.formato);
                 $('#visualizar #formato').val(formatEnvent);
 
-                $('#visualizar #solicitante').text(event
-                    .solicitante); // statusexibir - visualizar eventos
+                $('#visualizar #solicitante').text(event.solicitante); // statusexibir - visualizar eventos
                 //$('#visualizar #solicitante').val(event.solicitante); // statusexibir - visualizar eventos
                 $('#visualizar #obs').text(event.observacao);
                 //$('#visualizar #obs').val(event.observacao);
@@ -839,9 +845,11 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <dd id="audExibir"></dd>
                                 <dt>Transmissão:</dt>
                                 <dd id="tsinalx"></dd>
-                                <dt>Local</dt>
+                                <dt>Local:</dt>
                                 <dd id="local"></dd>
-                                <dt>Formato</dt>
+                                <dt>Auditório:</dt>
+                                <dd id="audEmerj"></dd>
+                                <dt>Formato:</dt>
                                 <dd id="formatEnvent"></dd>
 
 
@@ -1087,16 +1095,29 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     </div>
 
 
-
-
                     <div class="form-group">
                         <i class="material-icons"></i>
                         <label for="inputEmail3" class="col-sm-3 control-label">Local:</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="local" id="local" placeholder="Local">
                         </div>
-                    </div>
-
+                    </div>              
+                    
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
+                        <div class="col-sm-6">
+                            <select name="audEmerj" class="form-control" id="audEmerj" 
+                                <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
+                                <option value="Auditório Antônio Carlos Amorim">Antonio Carlos Amorim  </option>
+                                <option value=" Auditório DES. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves </option>
+                                <option value="Auditório DES. Paulo Roberto Leite Ventura">Des. Paulo Roberto Ventura </option>
+                                <option value="Des. Joaquim A. Penalva Santos">Des. Joaquim A. Penalva Santos</option>
+                                <option value="0">Não se aplica</option>
+                            </select>
+                    <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>
+                        </div>   
+                    </div>         
+                   
 
 
 
@@ -1310,37 +1331,38 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 </select>
                             </div>
                         </div>
+
+
+
                         <div class="form-group">
-                        <i class="material-icons"></i>
-                        <label for="inputEmail3" class="col-sm-3 control-label">Local:</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="local" id="local" placeholder="Local">
+                            <i class="material-icons"></i>
+                            <label for="inputEmail3" class="col-sm-3 control-label">Local</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="local" id="local"
+                                    placeholder="Informe o local do seu evento ">
+                            </div>
                         </div>
-                    </div>
+
 
                     <div class="form-group">
-  <label for="inputEmail3" class="col-sm-3 control-label">Auditório  </label>                            
-  <div class="col-sm-6">
-                                    
-    <select name="audEmerj" class="form-control" id="audEmerj" 
-    <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
-                                          
-      <option value="AUDITÓRIO ANTONIO CARLOS AMORIM">Antonio Carlos Amorim  </option>
-                                          
-      <option value=" AUDITÓRIO DES. NELSON RIBEIRO ALVES">Des. Nelson Ribeiro Alves </option>
-                                          
-      <option value="AUDITÓRIO DES. PAULO ROBERTO LEITE VENTURA">Des. Paulo Roberto Ventura </option>
-                                          
-      <option value="AUDITÓRIO DES. JOAQUIM ANTÔNIO DE VIZEU PENALVA SANTOS">Des. Joaquim A. Penalva Santos</option>
-                                          
-      <option value="0">Não se aplica</option>
-                                      
-    </select>
-     <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>                            
-  </div>
-                          
-</div>o                     
-                                        
+                    <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
+                    <div class="col-sm-6">
+                    <select name="audEmerj" class="form-control" id="audEmerj" 
+                        <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
+                        <option value="Auditório Antonio Carlos Amorim">Antonio Carlos Amorim  </option>
+                        <option value=" Auditório Des. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves </option>
+                        <option value="Auditório Des. Paulo Roberto Ventura">Des. Paulo Roberto Ventura </option>
+                        <option value="Auditório Des. Joaquim A. Penalva Santos">Des. Joaquim A. Penalva Santos</option>
+                        <option value="0">Não se aplica</option>
+                    </select>
+                    <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>
+                    </div>
+
+                </div>
+
+
+               
+                      
 
 
                 <div class="modal-footer" style="background:#0c344c">
@@ -1349,6 +1371,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     </button>
                 </div>
                 </form>
+            </div>
             </div>
         </div>
     </div>
