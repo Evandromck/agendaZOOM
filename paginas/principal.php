@@ -293,7 +293,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     }        
                 ?>
             eventLimit: true, // allow "more" link when too many events
-            showNonCurrentDates: false,   //Os dias desabilitados não renderizarão eventos Quando definido para falseexibição mensal:
+            showNonCurrentDates: false, //Os dias desabilitados não renderizarão eventos Quando definido para falseexibição mensal:
 
             eventClick: function(event) {
                 //var audcolor = event.aud + "." + event.color;
@@ -405,11 +405,11 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
 
                 var sigla = event.sigla;
-                var emerj = event.audEmerj
+                var emerjAud = event.audEmerj
                 var audsigla = sigla + "." + event.aud;
                 var tsinalx = event.tsinal + "." + event.tsinal2;
                 var formatEnvent = event.formato;
-                var emerj = event.audEmerj;
+
                 // var dtCadastro= date('Y-m-d H:i:s');
                 // var dataCadastro = dtCadastro;
 
@@ -424,9 +424,9 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                 $('#visualizar #evento').val(event.evento);
                 $('#visualizar #start').text(event.start.format('DD/MM/YYYY HH:mm'));
                 $('#visualizar #start').val(event.start.format('DD/MM/YYYY HH:mm'));
-                
-                
-                
+
+
+
                 if (event.status == 5) {
                     //se evento for feriado, o end não pode ser diferente do start		
                     $('#visualizar #end').text(event.start.format('DD/MM/YYYY HH:mm'));
@@ -436,24 +436,28 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     $('#visualizar #end').val(event.end.format('DD/MM/YYYY HH:mm'));
                 }
                 $('#visualizar #statusExibir').val(statusText); // statusexibir - visualizar eventos
-                $('#visualizar #statusExibir').text(statusText); // statusexibir - visualizar eventos
+                $('#visualizar #statusExibir').text(
+                    statusText); // statusexibir - visualizar eventos
                 $('#visualizar #dataCadastro').text(event.dataCadastro);
                 $('#visualizar #audExibir').text(event.aud); //nome do auditorio por extenso
                 $('#visualizar #aud').val(audsigla);
-                
 
-                $('#visualizar #tsinalx').text(event.tsinal); // conmentei para aparecer a recuperação na tela do editar
+
+                $('#visualizar #tsinalx').text(event
+                    .tsinal); // conmentei para aparecer a recuperação na tela do editar
                 $('#visualizar #tsinal').val(tsinalx);
 
                 $('#visualizar #local').text(event.local);
                 $('#visualizar #local').val(event.local);
                 $('#visualizar #audEmerj').text(event.audEmerj);
-                $('#visualizar #audEmerj').val(emerj);
-                
+                $('#visualizar #audEmerj').val(event.audEmerj);
+
+
                 $('#visualizar #formatEnvent').text(event.formato);
                 $('#visualizar #formato').val(formatEnvent);
 
-                $('#visualizar #solicitante').text(event.solicitante); // statusexibir - visualizar eventos
+                $('#visualizar #solicitante').text(event
+                    .solicitante); // statusexibir - visualizar eventos
                 //$('#visualizar #solicitante').val(event.solicitante); // statusexibir - visualizar eventos
                 $('#visualizar #obs').text(event.observacao);
                 //$('#visualizar #obs').val(event.observacao);
@@ -997,7 +1001,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
                                 <option value="FERIADO.Feriado">Feriado</option>
                                 <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                 <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
                                 <option value="PRO300_10.pro300_10">Pro 300_10</option>
                                 <option value="PRO300_11.pro300_11">Pro 300_11</option>
                                 <option value="PRO300_12.pro300_12">Pro 300_12</option>
@@ -1019,7 +1023,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
                                 <option value="PRO300_18.pro300_18">Pro 300_18</option>
                                 <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                               <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
                                 <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
@@ -1029,7 +1033,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <option value="PRO300_11.pro300_11">Pro 300_11</option>
                                 <option value="PRO300_12.pro300_12">Pro 300_12</option>
                                 <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                 <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
                                 <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
@@ -1101,23 +1105,29 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="local" id="local" placeholder="Local">
                         </div>
-                    </div>              
-                    
+                    </div>
+
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
+                        <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>
                         <div class="col-sm-6">
-                            <select name="audEmerj" class="form-control" id="audEmerj" 
-                                <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
-                                <option value="Auditório Antônio Carlos Amorim">Antonio Carlos Amorim  </option>
-                                <option value=" Auditório DES. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves </option>
-                                <option value="Auditório DES. Paulo Roberto Leite Ventura">Des. Paulo Roberto Ventura </option>
-                                <option value="Des. Joaquim A. Penalva Santos">Des. Joaquim A. Penalva Santos</option>
-                                <option value="0">Não se aplica</option>
+                            <select name="audEmerj" class="form-control" id="audEmerj" <?php if($nivelLogado < 4){ ?>>
+                                <option value="não_se_aplica">Não se aplica</option>
+                                <option value="Auditório Antônio Carlos Amorim">Antonio Carlos Amorim </option>
+                                <option value=" Auditório DES. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves
+                                </option>
+                                <option value="Auditório DES. Paulo Roberto Leite Ventura">Des. Paulo Roberto
+                                    Ventura
+                                </option>
+                                <option value="Des. Joaquim A. Penalva Santos">Des. Joaquim A. Penalva Santos
+                                </option>
+
+
+                                <?php }else { ?>
+                                <option value="Não Se Aplica">Não se Aplica</option> <?php } ?>
                             </select>
-                    <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>
-                        </div>   
-                    </div>         
-                   
+                        </div>
+                    </div>
+
 
 
 
@@ -1237,7 +1247,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                   if( $userDepartamento == "DETEC") { ?>
                                     <option value="FERIADO.Feriado">Feriado</option>
                                     <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                      <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                    <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
                                     <option value="PRO300_10.pro300_10">Pro 300_10</option>
                                     <option value="PRO300_11.pro300_11">Pro 300_11</option>
                                     <option value="PRO300_12.pro300_12">Pro 300_12</option>
@@ -1258,7 +1268,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                     <?php } elseif ($userDepartamento == "GABINETE" ) { ?>
                                     <option value="PRO300_18.pro300_18">Pro 300_18</option>
                                     <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                   <!--   <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                    <!--   <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
                                     <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
@@ -1281,7 +1291,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
                                     <?php } elseif ($userDepartamento == "DINSE" ) { ?>
                                     <option value="PRO300_13.pro300_13">Pro 300_13</option>
-                                     <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
+                                    <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
                                     <?php } elseif ($nivelLogado == 7 ) { ?>
@@ -1343,27 +1353,32 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>
+                            <div class="col-sm-6">
+                                <select name="audEmerj" class="form-control" id="audEmerj"
+                                    <?php if($nivelLogado < 4){ ?>>
+                                    <option value="não_se_aplica">Não se aplica</option>
+                                    <option value="Auditório Antônio Carlos Amorim">Antonio Carlos Amorim </option>
+                                    <option value=" Auditório DES. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves
+                                    </option>
+                                    <option value="Auditório DES. Paulo Roberto Leite Ventura">Des. Paulo Roberto
+                                        Ventura
+                                    </option>
+                                    <option value="Des. Joaquim A. Penalva Santos">Des. Joaquim A. Penalva Santos
+                                    </option>
 
-                    <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
-                    <div class="col-sm-6">
-                    <select name="audEmerj" class="form-control" id="audEmerj" 
-                        <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
-                        <option value="Auditório Antonio Carlos Amorim">Antonio Carlos Amorim  </option>
-                        <option value=" Auditório Des. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves </option>
-                        <option value="Auditório Des. Paulo Roberto Ventura">Des. Paulo Roberto Ventura </option>
-                        <option value="Auditório Des. Joaquim A. Penalva Santos">Des. Joaquim A. Penalva Santos</option>
-                        <option value="0">Não se aplica</option>
-                    </select>
-                    <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>
-                    </div>
+
+                                    <?php }else { ?> <input type="text" class="form-control" name="audEmerj"
+                                        id="audEmerj" placeholder="Informe o local do seu evento ">
+                                    <option value="Não Se Aplica">Não se Aplica</option> <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+
+
 
                 </div>
-
-
-               
-                      
-
 
                 <div class="modal-footer" style="background:#0c344c">
                     <button align='right' type="submit" class="btn btn-default">
@@ -1372,9 +1387,10 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                 </div>
                 </form>
             </div>
-            </div>
         </div>
     </div>
+
+
 
 
 

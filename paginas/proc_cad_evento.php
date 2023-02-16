@@ -248,25 +248,18 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
 
 //OK
-	if($nivelLogado < 4){
-		$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro,audEmerj) 
-
-		                  VALUES ("'.$responsavel.'","'.$telefone.'","'.$email.'","'.$title.'", "'.$status_cor[1].'", "'.$start_sem_barra.'", "'.$end_sem_barra.'", "'.$aud_sigla[1].'", "'.$local.'","'.$setor.'","'.$status_cor[0].'","'.$aud_sigla[0].'", "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'", "'.$_SESSION['usuarioId'].'","'.$dateTime.'", "'.$_SESSION['usuarioNiveisAcessoId'].'","'.$audEmerj.'",)';
-
-		$resultado_events = mysqli_query($conn, $result_events);
-	}
+	
 		
 
 
-	if($licenca_departamento == "pro100_01" and $departamento['departamento'] =="DEAMA"):
+	if($licenca_departamento == "não_se_aplica" and $departamento['departamento'] =="DEAMA"):
 
 		//departamento ***Cursos DEAMA***
 
-		$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro) 
-
-		                  VALUES ("'.$responsavel.'","'.$telefone.'","'.$email.'","'.$title.'", "'.$status_cor[1].'", "'.$start_sem_barra.'", "'.$end_sem_barra.'", "'.$aud_sigla[1].'", "'.$local.'","'.$setor.'","'.$status_cor[0].'","'.$aud_sigla[0].'", "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'", "'.$_SESSION['usuarioId'].'","'.$dateTime.'", "'.$_SESSION['usuarioNiveisAcessoId'].'")';
-
-		$resultado_events = mysqli_query($conn, $result_events);
+		$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local,audEmerj, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, ) 
+								  VALUES ("' . $responsavel . '","' . $telefone . '","' . $email . '","' . $title . '", "'.$status_cor[1].'", "' . $start_sem_barra . '", "' . $end_sem_barra . '", "' . $aud_sigla[1] . '","'.$local.'","'  .$audEmerj.'","'   . $setor . '","' . $status_cor[0] . '","' . $aud_sigla[0] . '",  "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'","' . $_SESSION['usuarioNome'] . '","' . $dateTime . '", "' . $_SESSION['usuarioNiveisAcessoId'] . '")';
+						
+					$resultado_events = mysqli_query($conn, $result_events);
 
 
 
@@ -278,11 +271,10 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
 			//departamento ***Cursos Livres/pro100_17---  DEAMA***
 	
-			$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro) 
-	
-							  VALUES ("'.$responsavel.'","'.$telefone.'","'.$email.'","'.$title.'", "'.$status_cor[1].'", "'.$start_sem_barra.'", "'.$end_sem_barra.'", "'.$aud_sigla[1].'","'.$local.'","'.$setor.'","'.$status_cor[0].'","'.$aud_sigla[0].'", "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'", "'.$_SESSION['usuarioId'].'","'.$dateTime.'", "'.$_SESSION['usuarioNiveisAcessoId'].'")';
-	
-			$resultado_events = mysqli_query($conn, $result_events);
+			$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
+								  VALUES ("' . $responsavel . '","' . $telefone . '","' . $email . '","' . $title . '", "'.$status_cor[1].'", "' . $start_sem_barra . '", "' . $end_sem_barra . '", "' . $aud_sigla[1] . '","'.$local.'","' . $setor . '","' . $status_cor[0] . '","' . $aud_sigla[0] . '",  "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'","' . $_SESSION['usuarioNome'] . '","' . $dateTime . '", "' . $_SESSION['usuarioNiveisAcessoId'] . '","'.$audEmerj.'")';
+						
+					$resultado_events = mysqli_query($conn, $result_events);
 
         
 
