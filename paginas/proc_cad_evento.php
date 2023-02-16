@@ -584,7 +584,7 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
 
 
-				elseif ($licenca_departamento == "pro300_18" and $departamento['departamento'] == "DETEC") :
+				elseif ($licenca_departamento == "não_se_aplica" and $departamento['departamento'] == "DETEC") :
 
 					//departamento ***/GABINETE***
 		

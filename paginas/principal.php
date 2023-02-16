@@ -815,7 +815,9 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     <h3 style="color:white" class="modal-title text-center">Informações do Evento</h3>
                 </div>
                 <div class="modal-body">
-
+                   
+                       
+                        
                     <div class="visualizar">
                         <dl class="dl-horizontal">
                             <!-- ONDE HÁ DIVS É PARA OCULTAR O CONTEÚDO EM CASOS ESPECÍFICOS -->
@@ -843,8 +845,10 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <dd id="formatEnvent"></dd>                               
                                 <dt>Local:</dt>
                                 <dd id="local"></dd>                                
-                                <dt>Auditório:</dt>
-                                <dd id="audEmerj"></dd>
+                               <dt>Auditório:</dt>
+                                <dd id="audEmerj"></dd>                   
+                            
+                            
                             </div>
                             <div id="ocultObs">
                                 <dt>Cancelado por:</dt>
@@ -853,8 +857,8 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <dd id="obs"></dd>
                             </div>
                             <!--ajax valor -->
-                        </dl>
-                        <div class="modal-footer"
+                         </dl>
+                         <div class="modal-footer"
                             style="background:#0c344c; padding:3%; margin-bottom:-15px; margin-left:-15px; margin-right:-15px;">
                             <?php if($nivelLogado < 8){
                             //nível consulta não edita nem cancela evento, secretaria só edita e cancela o próprio evento (lógica no events do javascript)    
@@ -1089,17 +1093,17 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
 
 
-                    <!-- <div class="form-group">
-                        <i class="material-icons"></i>
-                        <label for="inputEmail3" class="col-sm-3 control-label">Local:</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="local" id="local" placeholder="Local">
-                        </div>
-                    </div>
-                     -->
+                                   <!--  <div class="form-group">
+                                        <i class="material-icons"></i>
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Local:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="local" id="local" placeholder="Local">
+                                        </div>
+                                    </div> -->
+                     
 
                                     <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Local</label>                            
                                         <div class="col-sm-6">
                                         <select name="audEmerj" class="form-control" id="audEmerj" 
                                             <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
@@ -1108,8 +1112,13 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                             <option value="AUDITÓRIO DES. PAULO ROBERTO LEITE VENTURA">Des. Paulo Roberto Ventura </option>
                                             <option value="AUDITÓRIO DES. JOAQUIM ANTÔNIO DE VIZEU PENALVA SANTOS">Des. Joaquim A. Penalva Santos</option>
                                             <option value="0">Não se aplica</option>
-                                        </select>
-                                        <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>
+                                        </select>                                    
+                                            
+                                        <?php  
+                                        
+                                        
+                                                                      
+                                        } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento"> <?php } ?>
                                         </div>
                                      </div>
 
@@ -1329,16 +1338,18 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
 
 
-                        <!-- <div class="form-group">
-                            <i class="material-icons"></i>
-                            <label for="inputEmail3" class="col-sm-3 control-label">Local</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="local" id="local"
-                                    placeholder="Informe o local do seu evento ">
-                            </div>
-                        </div>  -->
-
                                         <div class="form-group">
+                                            <i class="material-icons"></i>
+                                            <label for="inputEmail3" class="col-sm-3 control-label">Loca</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="local" id="local"
+                                                    placeholder="Informe o local do seu evento ">
+                                            </div>
+                                        </div>  
+                                       
+                                        <div class="form-group">
+
+                                        
                                         <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
                                         <div class="col-sm-6">
                                         <select name="audEmerj" class="form-control" id="audEmerj" 
@@ -1348,8 +1359,9 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                             <option value="AUDITÓRIO DES. PAULO ROBERTO LEITE VENTURA">Des. Paulo Roberto Ventura </option>
                                             <option value="AUDITÓRIO DES. JOAQUIM ANTÔNIO DE VIZEU PENALVA SANTOS">Des. Joaquim A. Penalva Santos</option>
                                             <option value="0">Não se aplica</option>
+                                            
                                         </select>
-                                        <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> <?php } ?>
+                                        <?php } else { ?> <input type="text" class="form-control" name="audEmerj" id="audEmerj" placeholder="Informe o local do seu evento "> --> <?php } ?>
                                         </div>
                                      </div>
 
