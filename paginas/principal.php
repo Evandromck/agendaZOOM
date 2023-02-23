@@ -405,10 +405,10 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
 
                 var sigla = event.sigla;
-                var emerjAud = event.audEmerj
                 var audsigla = sigla + "." + event.aud;
                 var tsinalx = event.tsinal + "." + event.tsinal2;
                 var formatEnvent = event.formato;
+                var emerjAud = event.audEmerj;
 
                 // var dtCadastro= date('Y-m-d H:i:s');
                 // var dataCadastro = dtCadastro;
@@ -449,8 +449,8 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
                 $('#visualizar #local').text(event.local);
                 $('#visualizar #local').val(event.local);
-                $('#visualizar #audEmerj').text(event.audEmerj);
-                $('#visualizar #audEmerj').val(event.audEmerj);
+                $('#visualizar #emerjAud').text(event.audEmerj);
+                $('#visualizar #audEmerj').val(emerjAud);
 
 
                 $('#visualizar #formatEnvent').text(event.formato);
@@ -506,9 +506,9 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     tsinal2: '<?= $row_events['tsinal2'] ?>',
                     dataCadastro: '<?= $row_events['dataCadastro'] ?>',
                     local: '<?= $row_events['local'] ?>',
-                    audEmerj: '<?= $row_events['audEmerj'] ?>',
                     sigla: '<?= $row_events['sigla'] ?>',
                     formato: '<?= $row_events['formato'] ?>',
+                    audEmerj: '<?= $row_events['audEmerj'] ?>',
 
 
 
@@ -852,7 +852,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <dt>Local:</dt>
                                 <dd id="local"></dd>
                                 <dt>Auditório:</dt>
-                                <dd id="audEmerj"></dd>
+                                <dd id="emerjAud"></dd>
                                 <dt>Formato:</dt>
                                 <dd id="formatEnvent"></dd>
 
@@ -1088,6 +1088,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <option value="On line">On line</option>
                                 <option value="Presencial">Presencial</option>
 
+
                                 <?php } else {
                                                         ?>
 
@@ -1097,6 +1098,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                             </select>
                         </div>
                     </div>
+
 
 
                     <div class="form-group">
@@ -1113,9 +1115,9 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                             <select name="audEmerj" class="form-control" id="audEmerj" <?php if($nivelLogado < 4){ ?>>
                                 <option value="não_se_aplica">Não se aplica</option>
                                 <option value="Auditório Antônio Carlos Amorim">Antonio Carlos Amorim </option>
-                                <option value=" Auditório DES. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves
+                                <option value=" Auditório Des. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves
                                 </option>
-                                <option value="Auditório DES. Paulo Roberto Leite Ventura">Des. Paulo Roberto
+                                <option value="Auditório Des. Paulo Roberto Leite Ventura">Des. Paulo Roberto
                                     Ventura
                                 </option>
                                 <option value="Des. Joaquim A. Penalva Santos">Des. Joaquim A. Penalva Santos
@@ -1360,9 +1362,9 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                     <?php if($nivelLogado < 4){ ?>>
                                     <option value="não_se_aplica">Não se aplica</option>
                                     <option value="Auditório Antônio Carlos Amorim">Antonio Carlos Amorim </option>
-                                    <option value=" Auditório DES. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves
+                                    <option value=" Auditório Des. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves
                                     </option>
-                                    <option value="Auditório DES. Paulo Roberto Leite Ventura">Des. Paulo Roberto
+                                    <option value="Auditório Des. Paulo Roberto Leite Ventura">Des. Paulo Roberto
                                         Ventura
                                     </option>
                                     <option value="Des. Joaquim A. Penalva Santos">Des. Joaquim A. Penalva Santos
@@ -1370,7 +1372,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
 
                                     <?php }else { ?> <input type="text" class="form-control" name="audEmerj"
-                                        id="audEmerj" placeholder="Informe o local do seu evento ">
+                                        id="audEmerj">
                                     <option value="Não Se Aplica">Não se Aplica</option> <?php } ?>
                                 </select>
                             </div>
