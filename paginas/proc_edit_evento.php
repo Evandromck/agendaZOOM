@@ -1,4 +1,4 @@
- <?php
+<?php
 
 session_start();
 //pega a hora atual e atualiza o log no banco
@@ -60,6 +60,7 @@ $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_STRING);
 $tsinal = filter_input(INPUT_POST,'tsinal', FILTER_SANITIZE_STRING);
 $tsinal2 = filter_input(INPUT_POST,'tsinal2', FILTER_SANITIZE_STRING);
 $local = filter_input(INPUT_POST, 'local', FILTER_SANITIZE_STRING);
+$audEmerj = filter_input(INPUT_POST, 'audEmerj', FILTER_SANITIZE_STRING);
 $formato = filter_input(INPUT_POST, 'formato', FILTER_SANITIZE_STRING);
 
 
@@ -279,9 +280,9 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 
 		$result_events = 'UPDATE events 
 
-		                  SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'" 
+		 SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'", audEmerj="'.$audEmerj.'"
 
-					      WHERE id="'.$id.'" ';
+		 WHERE id="'.$id.'" ';
 
 		$resultado_events = mysqli_query($conn, $result_events);
 
@@ -305,13 +306,14 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 
 		
 
-		$result_events = 'UPDATE events 
+		 $result_events = 'UPDATE events 
 
-		                  SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'" 
+		 SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'", audEmerj="'.$audEmerj.'"
 
-					      WHERE id="'.$id.'" ';
+		 WHERE id="'.$id.'" ';
 
 		$resultado_events = mysqli_query($conn, $result_events);
+
 
 
 
@@ -332,13 +334,14 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 	
 			
 	
-			$result_events = 'UPDATE events 
+			 $result_events = 'UPDATE events 
+
+			 SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'", audEmerj="'.$audEmerj.'"
 	
-							  SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'" 
-	
-							  WHERE id="'.$id.'" ';
+			 WHERE id="'.$id.'" ';
 	
 			$resultado_events = mysqli_query($conn, $result_events);
+	
 
 
 
@@ -397,13 +400,14 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 
 		 endswitch;
 
-	    $result_events = 'UPDATE events 
+		 $result_events = 'UPDATE events 
 
-		                  SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'" 
+		 SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'", audEmerj="'.$audEmerj.'"
 
-						  WHERE id="'.$id.'" ';
+		 WHERE id="'.$id.'" ';
 
 		$resultado_events = mysqli_query($conn, $result_events);
+
 
 		
 
@@ -495,9 +499,10 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 		end="'.$end_sem_barra.'",
 	    aud="'.$aud_sigla[1].'",
 	    local="'.$local.'",
+		audEmerj="'.$audEmerj.'",
 	    setor="'.$setor.'",
 		status="'.$status_cor[0].'",
-		sigla="'.$aud_sigla[0].'",
+		sigla="'.$aud_sigla[0].'", 
 		tsinal="'.$tsinalx[0].'",
 		tsinal2="'.$tsinalx[1].'",
 		formato="'.$formato.'",
