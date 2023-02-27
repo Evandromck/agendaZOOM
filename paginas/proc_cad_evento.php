@@ -57,9 +57,8 @@ $formato= filter_input(INPUT_POST, 'formato', FILTER_SANITIZE_STRING);
 
 //PEGA O NOME DO AUDITÓRIO SEM A SIGLA
 
-//$audConsulta = substr($aud, 6);
-
-$audio = explode(".",$aud);
+$audio = explode(".",$aud); 
+$audioaud = explode(".",$aud);
 
 //var_dump($audio[0]);
 
@@ -67,7 +66,8 @@ echo "<br>";
 
 //var_dump($audio[1]);
 
-$testeGeraldo = $audio[0];
+$testeGeraldo = $aud[0];
+$audExplode = $audioaud[0];
 
 //var_dump($audio);
 
@@ -75,19 +75,43 @@ $testeGeraldo = $audio[0];
 
 
 
-$sqlverificaInicio = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND aud = '$testeGeraldo') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND aud = '$testeGeraldo')";
+$sqlverificaInicio = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND aud = '$testeGeraldo') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND aud = '$audExplode')";
 
 						  
 
 $sqlverificaFim = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND aud = '$testeGeraldo') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND aud = '$testeGeraldo')";
+ 
 
-					       
+//VERIFICA SE O INTERVALO DOS HORÁRIOS DIGITADOS PELO USUÁRIO ESTÃO NO START E NO END DO BANCO COM O audEmerj, SE ESTIVER NÃO PERMITE CADASTRAR/EDITAR
+
+$sqlverificaInicioAud = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND audEmerj = '$audExplode') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND audEmerj = '$audExplode')";
+
+		
+$sqlverificaFimAud = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND audEmerj = '$audExplode') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND audEmerj = '$audExplode')";
+  
+
+
+			
+
+												/* if ( ('audEmerj === audEmerj') && $sqlverificaInicio == 0 && $sqlverificaFim == 0){
+
+													$sqlverifiAud = 
+												}
+												*/
+
 
 $verificaInicio = mysqli_query($conn, $sqlverificaInicio) or die(mysqli_error($conn));					  
 
-$verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));					  
+$verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));
 
-//var_dump($sqlverificaInicio);
+
+
+$verificaInicioAud = mysqli_query($conn, $sqlverificaInicioAud) or die(mysqli_error($conn));					  
+
+$verificaFimAud = mysqli_query($conn, $sqlverificaFimAud) or die(mysqli_error($conn)); 
+
+
+/* //var_dump($sqlverificaInicio);
 
 //echo "<br>";
 
@@ -129,7 +153,10 @@ $verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));
 
 									AND aud = '$aud' 
 
-									AND status != 2");*/
+									AND status != 2");*/ 
+
+
+
 
 
 
@@ -140,7 +167,13 @@ $linhaFim = mysqli_num_rows($verificaFim);
 
 
 
-if (($linhaInicio == 0) && ($linhaFim == 0) ){
+$linhaInicioAud = mysqli_num_rows($verificaInicioAud);
+
+$linhaFimAud = mysqli_num_rows($verificaFimAud);  
+
+
+
+if ( ($linhaInicio == 0 && $linhaFim == 0 ) or ($linhaInicioAud == 0 && $linhaFimAud == 0)){
 
 
 
@@ -175,6 +208,8 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 		return false;
 	}
 	else{
+
+		
 	//Converter a data e hora do formato brasileiro para o formato do Banco de Dados
 
 	$data = explode(" ", $start);
@@ -234,6 +269,13 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
 		$formato = "Presencial";
 	}
+
+   -----------------------------------------------------------------------
+
+
+
+
+
 */
 
 		
@@ -254,18 +296,18 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
 	if($licenca_departamento == "não_se_aplica" and $departamento['departamento'] =="DEAMA"):
 
-		//departamento ***Cursos DEAMA***
+		 //departamento ***Cursos DEAMA***
 
-		$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
+		 $result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
 		                  VALUES ("'.$responsavel.'","'.$telefone.'","'.$email.'","'.$title.'", "'.$status_cor[1].'", "'.$start_sem_barra.'", "'.$end_sem_barra.'", "'.$aud_sigla[1].'", "'.$local.'","'.$setor.'","'.$status_cor[0].'","'.$aud_sigla[0].'", "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'", "'.$_SESSION['usuarioId'].'","'.$dateTime.'", "'.$_SESSION['usuarioNiveisAcessoId'].'","'.$audEmerj.'")';
 
-		$resultado_events = mysqli_query($conn, $result_events);
+		 $resultado_events = mysqli_query($conn, $result_events);
 
 
 
 
 
-		elseif($licenca_departamento == "pro300_17" and $departamento['departamento'] =="DEAMA"):
+		 elseif($licenca_departamento == "pro300_17" and $departamento['departamento'] =="DEAMA"):
 
 		
 
@@ -278,37 +320,37 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
         
 
-        //-------------------------------------------------------licenças DEDES
+         //-------------------------------------------------------licenças DEDES
 
         
 
-        //OK
+         //OK
 
          elseif($licenca_departamento == "pro100_02" and $departamento['departamento'] =="DINSE"):
 
 		
 
-		//departamento ***Cursos Livres/pro100_02 ---  DINSE***
+		 //departamento ***Cursos Livres/pro100_02 ---  DINSE***
 
-		$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
+		 $result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
 		                  VALUES ("'.$responsavel.'","'.$telefone.'","'.$email.'","'.$title.'", "'.$status_cor[1].'", "'.$start_sem_barra.'", "'.$end_sem_barra.'", "'.$aud_sigla[1].'", "'.$local.'","'.$setor.'","'.$status_cor[0].'","'.$aud_sigla[0].'", "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'", "'.$_SESSION['usuarioId'].'","'.$dateTime.'", "'.$_SESSION['usuarioNiveisAcessoId'].'","'.$audEmerj.'")';
 
-		$resultado_events = mysqli_query($conn, $result_events);
+		 $resultado_events = mysqli_query($conn, $result_events);
 
         
 
-        //OK
+         //OK
 
          elseif($licenca_departamento == "pro100_03" and $departamento['departamento'] =="DEDES"):
 
 		
 
-		//departamento ***Cursos Livres/ pro100_03  DEDES***
+		 //departamento ***Cursos Livres/ pro100_03  DEDES***
 
-		$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
+		 $result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
 		                  VALUES ("'.$responsavel.'","'.$telefone.'","'.$email.'","'.$title.'", "'.$status_cor[1].'", "'.$start_sem_barra.'", "'.$end_sem_barra.'", "'.$aud_sigla[1].'", "'.$local.'","'.$setor.'","'.$status_cor[0].'","'.$aud_sigla[0].'", "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'", "'.$_SESSION['usuarioId'].'","'.$dateTime.'", "'.$_SESSION['usuarioNiveisAcessoId'].'","'.$audEmerj.'")';
 
-		$resultado_events = mysqli_query($conn, $result_events);
+		 $resultado_events = mysqli_query($conn, $result_events);
 
         
 
@@ -318,7 +360,7 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
 
 
-		elseif($licenca_departamento == "pro300_10" and $departamento['departamento'] =="DEDES"):
+		 elseif($licenca_departamento == "pro300_10" and $departamento['departamento'] =="DEDES"):
 
 		
 
@@ -381,27 +423,26 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
         
 
-        elseif($licenca_departamento == "Zoom_1000" and $departamento['departamento'] =="DEDES"):
+         elseif($licenca_departamento == "Zoom_1000" and $departamento['departamento'] =="DEDES"):
 
 		
 
-		//departamento ***Cursos Livres/GABINETE***
+		 //departamento ***Cursos Livres/GABINETE***
 
-		$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
+		 $result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
 		                  VALUES ("'.$responsavel.'","'.$telefone.'","'.$email.'","'.$title.'", "'.$status_cor[1].'", "'.$start_sem_barra.'", "'.$end_sem_barra.'", "'.$aud_sigla[1].'", "'.$local.'","'.$setor.'","'.$status_cor[0].'","'.$aud_sigla[0].'", "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'", "'.$_SESSION['usuarioId'].'","'.$dateTime.'", "'.$_SESSION['usuarioNiveisAcessoId'].'","'.$audEmerj.'")';
 
-		$resultado_events = mysqli_query($conn, $result_events); 
+		 $resultado_events = mysqli_query($conn, $result_events); 
 		
 		
 		
-		elseif($licenca_departamento == "Zoom_500" and $departamento['departamento'] =="DEDES"):
+		 
+		 //departamento ***DEDES com acesso a licença ZOOM_500 a partir de 26/07/2022***
 
-		//departamento ***DEDES com acesso a licença ZOOM_500 a partir de 26/07/2022***
-
-		$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
+		 $result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
 		                  VALUES ("'.$responsavel.'","'.$telefone.'","'.$email.'","'.$title.'", "'.$status_cor[1].'", "'.$start_sem_barra.'", "'.$end_sem_barra.'", "'.$aud_sigla[1].'", "'.$local.'","'.$setor.'","'.$status_cor[0].'","'.$aud_sigla[0].'", "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'", "'.$_SESSION['usuarioId'].'","'.$dateTime.'", "'.$_SESSION['usuarioNiveisAcessoId'].'","'.$audEmerj.'")';
 
-		$resultado_events = mysqli_query($conn, $result_events); 
+		 $resultado_events = mysqli_query($conn, $result_events);  
 
 
 
@@ -409,38 +450,38 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
         
 
-    //OK 
+          //OK 
 
-	    elseif($licenca_departamento == "pro100_04" and $departamento['departamento'] =="DENSE"):
+	     elseif($licenca_departamento == "pro100_04" and $departamento['departamento'] =="DENSE"):
 
 		
 
-		//departamento ***Cursos Livres/DENSE***
+		 //departamento ***Cursos Livres/DENSE***
 
-		$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
+		 $result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
 		                  VALUES ("'.$responsavel.'","'.$telefone.'","'.$email.'","'.$title.'", "'.$status_cor[1].'", "'.$start_sem_barra.'", "'.$end_sem_barra.'", "'.$aud_sigla[1].'", "'.$local.'","'.$setor.'","'.$status_cor[0].'","'.$aud_sigla[0].'", "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'", "'.$_SESSION['usuarioId'].'","'.$dateTime.'", "'.$_SESSION['usuarioNiveisAcessoId'].'","'.$audEmerj.'")';
 
-		$resultado_events = mysqli_query($conn, $result_events);
+		 $resultado_events = mysqli_query($conn, $result_events);
 
             
 
-     //ERRO cadastrando mesmo horario  
+         //ERRO cadastrando mesmo horario  
 
-	   elseif($licenca_departamento == "pro100_05" and $departamento['departamento'] =="DENSE"):
+	     elseif($licenca_departamento == "pro100_05" and $departamento['departamento'] =="DENSE"):
 
 		
 
-		//departamento ***Cursos Livres/DENSE***
+		 //departamento ***Cursos Livres/DENSE***
 
-		$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
+		 $result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
 		                  VALUES ("'.$responsavel.'","'.$telefone.'","'.$email.'","'.$title.'", "'.$status_cor[1].'", "'.$start_sem_barra.'", "'.$end_sem_barra.'", "'.$aud_sigla[1].'", "'.$local.'","'.$setor.'","'.$status_cor[0].'","'.$aud_sigla[0].'", "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'", "'.$_SESSION['usuarioId'].'","'.$dateTime.'", "'.$_SESSION['usuarioNiveisAcessoId'].'","'.$audEmerj.'")';
 
-		$resultado_events = mysqli_query($conn, $result_events);
+		 $resultado_events = mysqli_query($conn, $result_events);
 
 
 
 
-		elseif($licenca_departamento == "pro300_14" and $departamento['departamento'] =="DENSE"):
+		 elseif($licenca_departamento == "pro300_14" and $departamento['departamento'] =="DENSE"):
 
 		
 
@@ -476,25 +517,25 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
                  //-------------------------------------------------------licenças GABINETE
 
-        //OK
+         //OK
 
-        elseif($licenca_departamento == "pro100_06" and $departamento['departamento'] =="GABINETE"):
+         elseif($licenca_departamento == "pro100_06" and $departamento['departamento'] =="GABINETE"):
 
 		
 
-		//departamento ***Cursos Livres/DENSE***
+		 //departamento ***Cursos Livres/DENSE***
 
-		$result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
+		 $result_events = 'INSERT INTO events (responsavel, telefone, email, title, color, start, end, aud, local, setor, status, sigla, tsinal, tsinal2, formato, cadastradoPor, dataCadastro, nivel_cadastro, audEmerj) 
 		                  VALUES ("'.$responsavel.'","'.$telefone.'","'.$email.'","'.$title.'", "'.$status_cor[1].'", "'.$start_sem_barra.'", "'.$end_sem_barra.'", "'.$aud_sigla[1].'", "'.$local.'","'.$setor.'","'.$status_cor[0].'","'.$aud_sigla[0].'", "'.$tsinalx[0].'", "'.$tsinalx[1].'","'.$formato.'", "'.$_SESSION['usuarioId'].'","'.$dateTime.'", "'.$_SESSION['usuarioNiveisAcessoId'].'","'.$audEmerj.'")';
 
-		$resultado_events = mysqli_query($conn, $result_events);
+		 $resultado_events = mysqli_query($conn, $result_events);
 
 
 
 
 
 
-		elseif($licenca_departamento == "pro300_18" and $departamento['departamento'] =="GABINETE"):
+		 elseif($licenca_departamento == "pro300_18" and $departamento['departamento'] =="GABINETE"):
 
 		
 
@@ -510,7 +551,7 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
 
 
-		elseif($licenca_departamento == "Zoom_1000" and $departamento['departamento'] =="GABINETE"):
+		 elseif($licenca_departamento == "Zoom_1000" and $departamento['departamento'] =="GABINETE"):
 
 		
 
@@ -562,7 +603,7 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
 
 
-				elseif ($licenca_departamento == "Feriado" and $departamento['departamento'] == "DETEC") :
+				elseif ($licenca_departamento == "não_se_aplica" and $departamento['departamento'] == "DETEC") :
 
 					//departamento ***/GABINETE***
 		
@@ -598,7 +639,7 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
 	}
 
-*/	
+ */	
 
 
 
@@ -624,10 +665,10 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 	}
 
 
-}else  //SE O INTERVALO DOS HORÁRIOS FOR ENCONTRADO NO BANCO PARA AQUELE AUDITÓRIO
+  }else  //SE O INTERVALO DOS HORÁRIOS FOR ENCONTRADO NO BANCO PARA AQUELE AUDITÓRIO
 
 
-{
+  {
 	echo  "<script> window.alert (' Não foi possível cadastrar o evento!  O Horário já está reservado! O intervalo entre os eventos são de 2 horas.'); 
 
 				 window.location.href='principal.php'
