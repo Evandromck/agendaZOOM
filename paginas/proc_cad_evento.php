@@ -74,76 +74,56 @@ $audExplode = $audioaud[0];
 
 //var_dump($audio);
 
-//VERIFICA SE O INTERVALO DOS HORÁRIOS DIGITADOS PELO USUÁRIO ESTÃO NO START E NO END DO BANCO, SE ESTIVER NÃO PERMITE CADASTRAR/EDITAR
+//VERIFICA SE O INTERVALO DOS HORÁRIOS DIGITADOS PELO USUÁRIO ESTÃO NO START E NO END DO BANCO "audEmerj", SE ESTIVER NÃO PERMITE CADASTRAR/EDITAR
 
 
 
-$sqlverificaInicio = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND audEmerj = '$audExplode') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND audEmerj = '$audExplode')";
+$sqlverificaInicioaud = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND audEmerj = '$audExplode') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND audEmerj = '$audExplode')";
 
 						  
 
-$sqlverificaFim = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND audEmerj = '$audExplode') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND audEmerj = '$audExplode')";
+$sqlverificaFimaud = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND audEmerj = '$audExplode') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND audEmerj = '$audExplode')";
 
-					       
+//VERIFICA SE O INTERVALO DOS HORÁRIOS DIGITADOS PELO USUÁRIO ESTÃO NO START E NO END DO BANCO, SE ESTIVER NÃO PERMITE CADASTRAR/EDITAR	
+
+$sqlverificaInicio = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND aud = '$testeGeraldo') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND aud = '$audExplode')";
+
+						  
+
+$sqlverificaFim = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND aud = '$testeGeraldo') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND aud = '$testeGeraldo')";
+
 
 $verificaInicio = mysqli_query($conn, $sqlverificaInicio) or die(mysqli_error($conn));					  
 
-$verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));					  
+$verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));
 
-//var_dump($sqlverificaInicio);
 
-//echo "<br>";
+/////////////////////////////////////////////////////////////////////////////////////
 
-//var_dump($endMenor);
 
-/*$verificaInicio = mysqli_query($conn, "SELECT * FROM events 
+$verificaInicioaud = mysqli_query($conn, $sqlverificaInicioaud) or die(mysqli_error($conn));					  
 
-										WHERE '$startMenor' 
-
-										BETWEEN start AND end 
-
-										AND aud = '$aud' 
-
-										AND status != 2 
+$verificaFimaud = mysqli_query($conn, $sqlverificaFimaud) or die(mysqli_error($conn));	
 
 
 
-										OR '$startMaior' BETWEEN start AND end 
-
-										AND aud = '$aud' 
-
-										AND status != 2");*/
-
-										
-
-/*$verificaFim = mysqli_query($conn, "SELECT * FROM events 
-
-									WHERE '$endMenor' 
-
-									BETWEEN start AND end 
-
-									AND aud = '$aud' 
-
-									AND status != 2 
-
-
-
-									OR '$endMaior' BETWEEN start AND end 
-
-									AND aud = '$aud' 
-
-									AND status != 2");*/
-
+////////////////////////////////////////////////////////////////
 
 
 $linhaInicio = mysqli_num_rows($verificaInicio);
 
 $linhaFim = mysqli_num_rows($verificaFim);
 
+////////////////////////////////////////////////////////////////
+
+$linhaInicioaud = mysqli_num_rows($verificaInicioaud);
+
+$linhaFimaud = mysqli_num_rows($verificaFimaud);
 
 
 
-if (($linhaInicio == 0) && ($linhaFim == 0)){
+
+if ((($linhaInicio == 0) && ($linhaFim == 0)) && (($linhaInicioaud == 0) && ($linhaFimaud == 0) )){
 
 
 
