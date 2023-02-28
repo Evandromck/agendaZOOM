@@ -1115,7 +1115,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                             <select name="audEmerj" class="form-control" id="audEmerj" <?php if($nivelLogado < 4){ ?>>
                                 <option value="não_se_aplica">Não se aplica</option>
                                 <option value="Antônio Carlos Amorim">Antonio Carlos Amorim </option>
-                                <option value=" Des. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves
+                                <option value="Des. Nelson Ribeiro Alves">Des. Nelson Ribeiro Alves
                                 </option>
                                 <option value="Des. Paulo Roberto Leite Ventura">Des. Paulo Roberto
                                     Ventura

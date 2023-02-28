@@ -59,7 +59,7 @@ $formato= filter_input(INPUT_POST, 'formato', FILTER_SANITIZE_STRING);
 
 //$audConsulta = substr($aud, 6);
 
-$audio = explode(".",$aud);
+/* $audio = explode(".",$aud); */
 $audioaud = explode(".",$audEmerj);
 
 //var_dump($audio[0]);
@@ -68,7 +68,7 @@ echo "<br>";
 
 //var_dump($audio[1]);
 
-$testeGeraldo = $audio[0]; 
+/* $testeGeraldo = $audio[0]; */
 $audExplode = $audioaud[0];
 
 
@@ -86,16 +86,16 @@ $sqlverificaFimaud = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND 
 
 //VERIFICA SE O INTERVALO DOS HORÁRIOS DIGITADOS PELO USUÁRIO ESTÃO NO START E NO END DO BANCO, SE ESTIVER NÃO PERMITE CADASTRAR/EDITAR	
 
-$sqlverificaInicio = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND aud = '$testeGeraldo') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND aud = '$audExplode')";
+ $sqlverificaInicio = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND aud = '$testeGeraldo') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND aud = '$audExplode')";
 
 						  
 
-$sqlverificaFim = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND aud = '$testeGeraldo') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND aud = '$testeGeraldo')";
+$sqlverificaFim = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND aud = '$testeGeraldo') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND aud = '$testeGeraldo')"; 
 
 
 $verificaInicio = mysqli_query($conn, $sqlverificaInicio) or die(mysqli_error($conn));					  
 
-$verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));
+$verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn)); 
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ $verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));
 
 $verificaInicioaud = mysqli_query($conn, $sqlverificaInicioaud) or die(mysqli_error($conn));					  
 
-$verificaFimaud = mysqli_query($conn, $sqlverificaFimaud) or die(mysqli_error($conn));	
+$verificaFimaud = mysqli_query($conn, $sqlverificaFimaud) or die(mysqli_error($conn));
 
 
 
@@ -112,7 +112,7 @@ $verificaFimaud = mysqli_query($conn, $sqlverificaFimaud) or die(mysqli_error($c
 
 $linhaInicio = mysqli_num_rows($verificaInicio);
 
-$linhaFim = mysqli_num_rows($verificaFim);
+$linhaFim = mysqli_num_rows($verificaFim); 
 
 ////////////////////////////////////////////////////////////////
 
@@ -121,9 +121,9 @@ $linhaInicioaud = mysqli_num_rows($verificaInicioaud);
 $linhaFimaud = mysqli_num_rows($verificaFimaud);
 
 
+/* (($linhaInicio == 0) && ($linhaFim == 0)) && ()  */
 
-
-if ((($linhaInicio == 0) && ($linhaFim == 0)) && (($linhaInicioaud == 0) && ($linhaFimaud == 0) )){
+if (($linhaInicio == 0) && ($linhaFim == 0)){
 
 
 
@@ -169,6 +169,7 @@ if ((($linhaInicio == 0) && ($linhaFim == 0)) && (($linhaInicioaud == 0) && ($li
 	//$aud_cor = explode(".", $aud);   cor para auditorio
 	$status_cor = explode(".", $status);
 	$aud_sigla = explode(".", $aud);
+	$audEmerj_sigla = explode(".", $audEmerj);
 	$tsinalx = explode(".", $tsinal);////////
 	$data = explode(" ", $end);
 	list($date, $hora) = $data;
@@ -198,8 +199,7 @@ if ((($linhaInicio == 0) && ($linhaFim == 0)) && (($linhaInicioaud == 0) && ($li
 	//$audio = explode(".",$aud);
 
 	//echo "<br>";
-
-    $licenca_departamento = $audio[1];
+	
 
 	//var_dump($licenca_departamento);
 
@@ -231,6 +231,14 @@ if ((($linhaInicio == 0) && ($linhaFim == 0)) && (($linhaInicioaud == 0) && ($li
 
 
 //OK
+
+
+    $audio = explode(".",$aud);
+    $licenca_departamento = $audio[1];
+
+	$audioaud = explode(".",$audEmerj);
+	$auditorio = $audioaud[1];
+
 
 	if($licenca_departamento == "pro100_01" and $departamento['departamento'] =="DEAMA"):
 
@@ -282,7 +290,7 @@ if ((($linhaInicio == 0) && ($linhaFim == 0)) && (($linhaInicioaud == 0) && ($li
 
         //OK
 
-         elseif($licenca_departamento == "pro100_03" and $departamento['departamento'] =="DEDES"):
+         elseif(($licenca_departamento == "pro100_03" and $departamento['departamento'] =="DEDES") && ( ($linhaInicioaud == 0) && ($linhaFimaud == 0) )):
 
 		
 
@@ -302,7 +310,7 @@ if ((($linhaInicio == 0) && ($linhaFim == 0)) && (($linhaInicioaud == 0) && ($li
 
 
 
-		elseif($licenca_departamento == "pro300_10" and $departamento['departamento'] =="DEDES"):
+		elseif(($licenca_departamento == "pro300_10" and $departamento['departamento'] =="DEDES") && ( ($linhaInicioaud == 1) && ($linhaFimaud == 1) )):
 
 		
 
@@ -567,7 +575,7 @@ if ((($linhaInicio == 0) && ($linhaFim == 0)) && (($linhaInicioaud == 0) && ($li
 
 
 
-				elseif ($licenca_departamento == "Feriado" and $departamento['departamento'] == "DETEC") :
+				elseif ($licenca_departamento == "não_se_aplica" and $departamento['departamento'] == "DETEC") :
 
 					//departamento ***/GABINETE***
 		
@@ -583,7 +591,7 @@ if ((($linhaInicio == 0) && ($linhaFim == 0)) && (($linhaInicioaud == 0) && ($li
 
         
 
-		echo  "<script> window.alert ('Evento não cadastrado! Esta Licença pertence a outro departamento!'); 
+		echo  "<script> window.alert ('Evento não cadastrado! Esta Licença pertence a outro departamento! ou mesmo auditório !'); 
 
 
 	    </script>";    
