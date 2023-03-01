@@ -60,6 +60,7 @@ $formato= filter_input(INPUT_POST, 'formato', FILTER_SANITIZE_STRING);
 //$audConsulta = substr($aud, 6);
 
 $audio = explode(".",$aud);
+$emerjAud = explode(" ",$audEmerj);
 
 //var_dump($audio[0]);
 
@@ -68,6 +69,8 @@ echo "<br>";
 //var_dump($audio[1]);
 
 $testeGeraldo = $audio[0];
+$emerj = $audEmerj;
+
 
 //var_dump($audio);
 
@@ -77,15 +80,20 @@ $testeGeraldo = $audio[0];
 
 $sqlverificaInicio = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND aud = '$testeGeraldo') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND aud = '$testeGeraldo')";
 
-						  
+$sqlverificaAudInicio = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND audEmerj = '$emerj') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND audEmerj = '$emerj')";						  
 
 $sqlverificaFim = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND aud = '$testeGeraldo') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND aud = '$testeGeraldo')";
 
+$sqlverificaAudFim = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND audEmerj = '$emerj') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND audEmerj = '$emerj')";
 					       
 
-$verificaInicio = mysqli_query($conn, $sqlverificaInicio) or die(mysqli_error($conn));					  
+$verificaInicio = mysqli_query($conn, $sqlverificaInicio) or die(mysqli_error($conn));		
 
-$verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));					  
+$verificaAudInicio = mysqli_query($conn, $sqlverificaAudInicio) or die(mysqli_error($conn));	
+
+$verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));
+
+$verificaAudFim = mysqli_query($conn, $sqlverificaAudFim) or die(mysqli_error($conn));						  
 
 //var_dump($sqlverificaInicio);
 
@@ -135,12 +143,18 @@ $verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));
 
 $linhaInicio = mysqli_num_rows($verificaInicio);
 
+$linhaAudInicio = mysqli_num_rows($verificaAudInicio);
+
 $linhaFim = mysqli_num_rows($verificaFim);
 
+$linhaAudFim = mysqli_num_rows($verificaAudFim);
 
 
 
-if (($linhaInicio == 0) && ($linhaFim == 0) ){
+
+if (($linhaInicio == 0) && ($linhaFim == 0) && ($linhaAudInicio == 0) && ($linhaAudFim == 0) ) {
+
+	
 
 
 
@@ -217,6 +231,7 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 	//echo "<br>";
 
     $licenca_departamento = $audio[1];
+	
 
 	//var_dump($licenca_departamento);
 
@@ -608,9 +623,9 @@ if (($linhaInicio == 0) && ($linhaFim == 0) ){
 
 		echo  "<script> window.alert ('Perfeito! O evento foi cadastrado com sucesso!'); 
 
-				 window.location.href='principal.php'
+		window.location.href='principal.php'
 
-			  </script>";
+	 </script>";
 
 	}else{
 

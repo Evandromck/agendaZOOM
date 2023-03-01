@@ -70,7 +70,12 @@ $formato = filter_input(INPUT_POST, 'formato', FILTER_SANITIZE_STRING);
 
 //$audConsulta = substr($aud, 4);
 $audio = explode(".",$aud);
+$emerjAud = explode(" ",$audEmerj);
+
+
+
 $testeGeraldo = $audio[0];
+$emerj = $audEmerj;
 
 
 
@@ -94,22 +99,35 @@ $testeGeraldo = $audio[0];
 	
 $sqlverificaInicio = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND aud = '$testeGeraldo') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND aud = '$testeGeraldo')";
 
+$sqlverificaAudInicio = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND audEmerj = '$emerj') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND audEmerj = '$emerj')";	
 						  
 
 $sqlverificaFim = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND aud = '$testeGeraldo') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND aud = '$testeGeraldo')";
 
+$sqlverificaAudFim = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND audEmerj = '$emerj') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND audEmerj = '$emerj')";
 					       
 
-$verificaInicio = mysqli_query($conn, $sqlverificaInicio) or die(mysqli_error($conn));					  
+$verificaInicio = mysqli_query($conn, $sqlverificaInicio) or die(mysqli_error($conn));		
 
-$verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));					  
+
+$verificaAudInicio = mysqli_query($conn, $sqlverificaAudInicio) or die(mysqli_error($conn));	
+
+$verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));		
+
+
+$verificaAudFim = mysqli_query($conn, $sqlverificaAudFim) or die(mysqli_error($conn));		
 
 	
 	
 $linhaInicio = mysqli_num_rows($verificaInicio);
 
+
+$linhaAudInicio = mysqli_num_rows($verificaAudInicio);
+
 $linhaFim = mysqli_num_rows($verificaFim);
 
+
+$linhaAudFim = mysqli_num_rows($verificaAudFim);
 	
 	
 
@@ -123,7 +141,7 @@ $linhaFim = mysqli_num_rows($verificaFim);
 
 
 
-if (($linhaInicio < 2) && ($linhaFim < 2)){
+if (($linhaInicio < 2) && ($linhaFim < 2) && ($linhaAudInicio < 1) && ($linhaAudFim < 1)){
 
 
 
