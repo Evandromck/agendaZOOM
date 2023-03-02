@@ -237,16 +237,22 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
             //  Informa o Título do evento no calendário 
             eventRender: function(eventObj, $el) {
+
+
                 $el.popover({
-                    title: eventObj.title,
-                    content: eventObj.aud,
+                    title: "Auditório " + eventObj.audEmerj,
+                    content: "Licença Zoom " + eventObj.aud,
+
+
 
 
                     trigger: 'hover',
                     placement: 'top',
                     container: 'body'
                 });
+
             },
+
 
             events: [{
                 title: 'title',
@@ -662,6 +668,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                         aria-expanded="false"><img style="margin-right:5px;" src="../imagens/images_YfL_icon.ico "><span
                             id="bemvindo" ; style="font-size:120%;"> Bem-vindo(a),
                             <?php echo $_SESSION['usuarioNome']?><span class="caret"></span>
+
                         </span></a>
                     <ul class="dropdown-menu" style="margin-right: 120px; cursor: context-menu;">
                         <li><a data-toggle="modal" data-target="#exampleModalCenter5">Alterar Senha</a></li>
