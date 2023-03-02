@@ -1,35 +1,58 @@
 <?php
 
 session_start();
+
 //pega a hora atual e atualiza o log no banco
+
 date_default_timezone_set('America/Sao_Paulo');
+
 //Incluir conexao com BD
+
 include_once("../conexao.php");
 
+
+
 // FUNÇÕES QUE CONVERTEM FORMATOS DAS DATAS E CRIAM O PERÍODO DE TOLERÂNCIA DE 110 MINUTOS ENTRE EVENTOS
+
 function converteDataMenor($date_str)
+
 {
+
 	$date = DateTime::createFromFormat('d/m/Y H:i', $date_str);
+
 	$date->modify('-110 minutes');
+
 	return $date->format('Y-m-d H:i:s');	
+
 }
+
 function converteDataMaior($date_str)
+
 {
+
 	$date = DateTime::createFromFormat('d/m/Y H:i', $date_str);
+
 	$date->modify('+110 minutes');
+
 	return $date->format('Y-m-d H:i:s');	
+
 }
+
 function converteData($date_str)
-{	$date = DateTime::createFromFormat('d/m/Y H:i', $date_str);
+
+{
+
+	$date = DateTime::createFromFormat('d/m/Y H:i', $date_str);
 
 	return $date->format('Y-m-d H:i:s');	
 
 }
+
 $userDepartamento = $_SESSION['usuarioDepartamento'];
+
+
 $dateTime = date('Y-m-d H:i:s');//FORMATO AMERICANO PARA COMPARAÇÃO DE DATAS
 
-$nivelLogado = $_SESSION['usuarioNiveisAcessoId'];
-$dateTime = date('Y-m-d H:i:s');//FORMATO AMERICANO PARA COMPARAÇÃO DE DATAS
 
 $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 $title = filter_input(INPUT_POST, 'evento', FILTER_SANITIZE_STRING);
@@ -60,7 +83,6 @@ $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_STRING);
 $tsinal = filter_input(INPUT_POST,'tsinal', FILTER_SANITIZE_STRING);
 $tsinal2 = filter_input(INPUT_POST,'tsinal2', FILTER_SANITIZE_STRING);
 $local = filter_input(INPUT_POST, 'local', FILTER_SANITIZE_STRING);
-$audEmerj = filter_input(INPUT_POST, 'audEmerj', FILTER_SANITIZE_STRING);
 $formato = filter_input(INPUT_POST, 'formato', FILTER_SANITIZE_STRING);
 
 
@@ -68,56 +90,62 @@ $formato = filter_input(INPUT_POST, 'formato', FILTER_SANITIZE_STRING);
 
 //PEGA O NOME DO AUDITÓRIO SEM A SIGLA
 
-//$audConsulta = substr($aud, 4);
-$audio = explode(".",$aud);
-$testeGeraldo = $audio[0];
+$audConsulta = substr($aud, 4);
 
 
 
+if ($status != 2){
 
 	//QUANDO FOR EDIÇÃO DE EVENTO NÃO CANCELADO
 
 	//VERIFICA SE O INTERVALO DOS HORÁRIOS DIGITADOS PELO USUÁRIO ESTÃO NO START E NO END DO BANCO, SE ESTIVER NÃO PERMITE CADASTRAR/EDITAR
 
-	/*$verificaInicio = mysqli_query($conn, "SELECT * FROM events WHERE ('$startMenor' BETWEEN start AND end AND aud = '$audConsulta' AND status != 2) OR ('$startMaior' BETWEEN start AND end AND aud = '$audConsulta' AND status != 2)");
+	$verificaInicio = mysqli_query($conn, "SELECT * FROM events WHERE ('$startMenor' BETWEEN start AND end AND aud = '$audConsulta' AND status != 2) OR ('$startMaior' BETWEEN start AND end AND aud = '$audConsulta' AND status != 2)");
 
 
 
-	$verificaFim = mysqli_query($conn, "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND aud = '$audConsulta' AND status != 2) OR ('$endMaior' BETWEEN start AND end AND aud = '$audConsulta' AND status != 2)"); 
+	$verificaFim = mysqli_query($conn, "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND aud = '$audConsulta' AND status != 2) OR ('$endMaior' BETWEEN start AND end AND aud = '$audConsulta' AND status != 2)");
 	
+	
+	
+	
+	
+	
+	
+
+
+
 	$linhaInicio = mysqli_num_rows($verificaInicio);
 
 	$linhaFim = mysqli_num_rows($verificaFim);
-	
-	
-	*/
-	
-$sqlverificaInicio = "SELECT * FROM events WHERE ('$startMenor' BETWEEN  start AND end AND status != 2  AND aud = '$testeGeraldo') OR ('$startMaior' BETWEEN start AND end  AND status != 2 AND aud = '$testeGeraldo')";
-
-						  
-
-$sqlverificaFim = "SELECT * FROM events WHERE ('$endMenor' BETWEEN start AND end AND status != 2 AND aud = '$testeGeraldo') OR ('$endMaior' BETWEEN start AND end AND status != 2  AND aud = '$testeGeraldo')";
-
-					       
-
-$verificaInicio = mysqli_query($conn, $sqlverificaInicio) or die(mysqli_error($conn));					  
-
-$verificaFim = mysqli_query($conn, $sqlverificaFim) or die(mysqli_error($conn));					  
-
-	
-	
-$linhaInicio = mysqli_num_rows($verificaInicio);
-
-$linhaFim = mysqli_num_rows($verificaFim);
-
-	
-	
 
 
 
+}
+
+else if ($status == 2){
+
+	//QUANDO FOR EDIÇÃO DE EVENTO CANCELADO
+
+	//VERIFICA SE O INTERVALO DOS HORÁRIOS DIGITADOS PELO USUÁRIO ESTÃO NO START E NO END DO BANCO, SE ESTIVER NÃO PERMITE CADASTRAR/EDITAR
+
+	$verificaInicio = mysqli_query($conn, "SELECT * FROM events WHERE '$startMenor' BETWEEN start AND end AND aud = '$audConsulta'");
+
+	//OR '$startMaior' BETWEEN start AND end AND aud = '$audConsulta'
 
 
 
+	$verificaFim = mysqli_query($conn, "SELECT * FROM events WHERE '$endMaior' BETWEEN start AND end AND aud = '$audConsulta'");
+
+	//OR '$endMenor' BETWEEN start AND end AND aud = '$audConsulta'
+
+
+
+	$linhaInicio = mysqli_num_rows($verificaInicio);
+
+	$linhaFim = mysqli_num_rows($verificaFim);
+
+}
 
 
 
@@ -133,7 +161,7 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 
 		if($reg['id'] != $id){
 
-			echo  "<script> window.alert ('Horário já reservado no período informado!'); 
+			echo  "<script> window.alert ('horário já reservado no período informado!'); 
 
 				  window.location.href='principal.php'
 
@@ -144,8 +172,6 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 		}
 
 	}
-    
-
 
 	
 
@@ -176,13 +202,6 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 		return false;
 
 	}
-	else if(($startConvert < $dateTime) || ($endConvert < $dateTime)){
-		// funcionando 15/03/2021
-		echo  "<script> window.alert ('Data selecionada anterior a hoje!');
-				 window.location.href='principal.php'
-			  </script>";
-		return false;
-	}
 
 	else{
 
@@ -208,25 +227,16 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 		$data_sem_barra = implode("-", $data_sem_barra);
 		$end_sem_barra = $data_sem_barra . " " . $hora;
 
-
-
-
-	$us = $_SESSION['usuarioId'];
-	$sql = "SELECT departamento from usuarios where id = '$us' ";
-	$sqlResult = mysqli_query($conn, $sql) or die(mysqli_erro($conn));
-	$departamento = mysqli_fetch_assoc($sqlResult);
-
-
 		
 
 		//PEGA O NOME DO AUDITÓRIO SEM A SIGLA
 
-		$licenca_departamento = $audio[1];
+
 
 			//$audConsulta = substr($aud, 6);
-		//	$audio = explode(".",$aud);
+			$audio = explode(".",$aud);
 			//var_dump($audio[0]);
-			//echo "<br>";
+			echo "<br>";
 			//var_dump($audio[1]);
 			//$testeGeraldo = $audio[0];
 			//var_dump($audio);
@@ -236,10 +246,14 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 
 		
 
-	
+	$us = $_SESSION['usuarioId'];
+	$sql = "SELECT departamento from usuarios where id = '$us' ";
+	$sqlResult = mysqli_query($conn, $sql) or die(mysqli_erro($conn));
+	$departamento = mysqli_fetch_assoc($sqlResult);
+
 	
 
-   
+    $licenca_departamento = $audio[1];
 
 	//var_dump($aud);
 	//var_dump($aud);
@@ -280,9 +294,9 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 
 		$result_events = 'UPDATE events 
 
-		 SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'", audEmerj="'.$audEmerj.'"
+		                  SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'" 
 
-		 WHERE id="'.$id.'" ';
+					      WHERE id="'.$id.'" ';
 
 		$resultado_events = mysqli_query($conn, $result_events);
 
@@ -306,14 +320,13 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 
 		
 
-		 $result_events = 'UPDATE events 
+		$result_events = 'UPDATE events 
 
-		 SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'", audEmerj="'.$audEmerj.'"
+		                  SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'" 
 
-		 WHERE id="'.$id.'" ';
+					      WHERE id="'.$id.'" ';
 
 		$resultado_events = mysqli_query($conn, $result_events);
-
 
 
 
@@ -334,14 +347,13 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 	
 			
 	
-			 $result_events = 'UPDATE events 
-
-			 SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'", audEmerj="'.$audEmerj.'"
+			$result_events = 'UPDATE events 
 	
-			 WHERE id="'.$id.'" ';
+							  SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'" 
+	
+							  WHERE id="'.$id.'" ';
 	
 			$resultado_events = mysqli_query($conn, $result_events);
-	
 
 
 
@@ -400,14 +412,13 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 
 		 endswitch;
 
-		 $result_events = 'UPDATE events 
+	    $result_events = 'UPDATE events 
 
-		 SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'", audEmerj="'.$audEmerj.'"
+		                  SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'" 
 
-		 WHERE id="'.$id.'" ';
+						  WHERE id="'.$id.'" ';
 
 		$resultado_events = mysqli_query($conn, $result_events);
-
 
 		
 
@@ -416,7 +427,6 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 	elseif($licenca_departamento == "pro100_02" and $departamento['departamento'] =="DINSE" 
 			or $licenca_departamento == "pro100_03" and $departamento['departamento'] =="DEDES"
 			or $licenca_departamento == "pro500_07" and $departamento['departamento'] =="DEDES"
-			or $licenca_departamento == "Zoom_500" and $departamento['departamento'] =="DEDES"
 			or $licenca_departamento == "Zoom_1000" and $departamento['departamento'] =="DEDES"
 			or $licenca_departamento == "pro300_10" and $departamento['departamento'] =="DEDES"
 			or $licenca_departamento == "pro300_11" and $departamento['departamento'] =="DEDES"
@@ -499,10 +509,9 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 		end="'.$end_sem_barra.'",
 	    aud="'.$aud_sigla[1].'",
 	    local="'.$local.'",
-		audEmerj="'.$audEmerj.'",
 	    setor="'.$setor.'",
 		status="'.$status_cor[0].'",
-		sigla="'.$aud_sigla[0].'", 
+		sigla="'.$aud_sigla[0].'",
 		tsinal="'.$tsinalx[0].'",
 		tsinal2="'.$tsinalx[1].'",
 		formato="'.$formato.'",
