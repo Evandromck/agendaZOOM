@@ -496,6 +496,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     tsinal2: '<?= $row_events['tsinal2'] ?>',
                     dataCadastro: '<?= $row_events['dataCadastro'] ?>',
                     local: '<?= $row_events['local'] ?>',
+                    audEmerj: '<?= $row_events['audEmerj'] ?>',
                     sigla: '<?= $row_events['sigla'] ?>',
                     formato: '<?= $row_events['formato'] ?>',
 
@@ -840,6 +841,8 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <dd id="tsinalx"></dd>
                                 <dt>Local</dt>
                                 <dd id="local"></dd>
+                                <dt>audEmerj</dt>
+                                <dd id="audEmerj"></dd>
                                 <dt>Formato</dt>
                                 <dd id="formatEnvent"></dd>
 
@@ -1062,7 +1065,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                         <div class="col-sm-6">
                             <select name="tsinal" class="form-control" id="tsinal">
                                 <?php 
-                                                        if($nivelLogado < 4){ ?>
+                                 if($nivelLogado < 4){ ?>
                                 <option value="S/ trasmissão. s/ trasmissão">Sem transmissão de sinal</option>
                                 <option value="YOUTUBE.Youtube">Youtube</option>
                                 <option value="FACEBOOK.Facebook">Facebook</option>
@@ -1106,6 +1109,25 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                             <input type="text" class="form-control" name="local" id="local" placeholder="Local">
                         </div>
                     </div>
+
+                    <div class="form-group">
+
+                                        
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
+                                        <div class="col-sm-6">
+                                        <select name="audEmerj" class="form-control" id="audEmerj" 
+                                            <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
+                                            <option value="AUDITÓRIO ANTONIO CARLOS AMORIM">Antonio Carlos Amorim  </option>
+                                            <option value=" AUDITÓRIO DES. NELSON RIBEIRO ALVES">Des. Nelson Ribeiro Alves </option>
+                                            <option value="AUDITÓRIO DES. PAULO ROBERTO LEITE VENTURA">Des. Paulo Roberto Ventura </option>
+                                            <option value="AUDITÓRIO DES. JOAQUIM ANTÔNIO DE VIZEU PENALVA SANTOS">Des. Joaquim A. Penalva Santos</option>
+                                            <option value="não se aplica">Não se aplica</option>                                           
+                                            
+                                       
+                                        <?php } else { ?> <option value="não se aplica">Não se aplica</option> <?php } ?>
+                                        </select>
+                                    </div>
+                                     </div>
 
 
 
@@ -1348,6 +1370,24 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                             </div>
                         </div>
 
+                </div>
+
+                <div class="form-group">
+
+                                        
+                <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>                            
+                <div class="col-sm-6">
+                <select name="audEmerj" class="form-control" id="audEmerj" 
+                    <?php if($nivelLogado < 4){ ?> placeholder="Informe o local do seu evento ">
+                    <option value="AUDITÓRIO ANTONIO CARLOS AMORIM">Antonio Carlos Amorim  </option>
+                    <option value=" AUDITÓRIO DES. NELSON RIBEIRO ALVES">Des. Nelson Ribeiro Alves </option>
+                    <option value="AUDITÓRIO DES. PAULO ROBERTO LEITE VENTURA">Des. Paulo Roberto Ventura </option>
+                    <option value="AUDITÓRIO DES. JOAQUIM ANTÔNIO DE VIZEU PENALVA SANTOS">Des. Joaquim A. Penalva Santos</option>                                           
+                    <option value="não se aplica">Não se aplica</option>
+
+                <?php } else { ?> <option value="não se aplica">Não se aplica</option> <?php } ?>
+                </select>
+                </div>
                 </div>
 
 
