@@ -1,4 +1,4 @@
- <?php
+<?php
 
 session_start();
 //pega a hora atual e atualiza o log no banco
@@ -331,6 +331,7 @@ if (($linhaInicio < 2) && ($linhaFim < 2) && ($linhaAudInicio < 1) && ($linhaAud
 		 WHERE id="'.$id.'" ';
 
 		$resultado_events = mysqli_query($conn, $result_events);
+
 
 
 
