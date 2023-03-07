@@ -239,7 +239,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
             eventRender: function(eventObj, $el) {
                 $el.popover({
                     title: eventObj.title,
-                    content: eventObj.aud,
+                    content: "Licença Zoom " + eventObj.aud,
 
 
                     trigger: 'hover',
@@ -293,7 +293,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     }        
                 ?>
             eventLimit: true, // allow "more" link when too many events
-            showNonCurrentDates: false,   //Os dias desabilitados não renderizarão eventos Quando definido para falseexibição mensal:
+            showNonCurrentDates: false, //Os dias desabilitados não renderizarão eventos Quando definido para falseexibição mensal:
 
             eventClick: function(event) {
                 //var audcolor = event.aud + "." + event.color;
@@ -408,6 +408,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                 var audsigla = sigla + "." + event.aud;
                 var tsinalx = event.tsinal + "." + event.tsinal2;
                 var formatEnvent = event.formato;
+                var emerjAud = event.audEmerj;
                 // var dtCadastro= date('Y-m-d H:i:s');
                 // var dataCadastro = dtCadastro;
 
@@ -443,6 +444,8 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
                 $('#visualizar #local').text(event.local);
                 $('#visualizar #local').val(event.local);
+                $('#visualizar #emerjAud').text(event.audEmerj);
+                $('#visualizar #audEmerj').val(emerjAud);
                 $('#visualizar #formatEnvent').text(event.formato);
                 $('#visualizar #formato').val(formatEnvent);
 
@@ -498,6 +501,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     local: '<?= $row_events['local'] ?>',
                     sigla: '<?= $row_events['sigla'] ?>',
                     formato: '<?= $row_events['formato'] ?>',
+                    audEmerj: '<?= $row_events['audEmerj'] ?>',
 
 
 
@@ -650,7 +654,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                         aria-expanded="false"><img style="margin-right:5px;" src="../imagens/images_YfL_icon.ico "><span
                             id="bemvindo" ; style="font-size:120%;"> Bem-vindo(a),
                             <?php echo $_SESSION['usuarioNome']?> -
-                             <?php echo $_SESSION['usuarioDepartamento']?><span class="caret"></span>
+                            <?php echo $_SESSION['usuarioDepartamento']?><span class="caret"></span>
                         </span></a>
                     <ul class="dropdown-menu" style="margin-right: 120px; cursor: context-menu;">
                         <li><a data-toggle="modal" data-target="#exampleModalCenter5">Alterar Senha</a></li>
@@ -841,6 +845,8 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <dd id="tsinalx"></dd>
                                 <dt>Local</dt>
                                 <dd id="local"></dd>
+                                <dt>Auditório:</dt>
+                                <dd id="emerjAud"></dd>
                                 <dt>Formato</dt>
                                 <dd id="formatEnvent"></dd>
 
@@ -989,7 +995,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
                                 <option value="FERIADO.Feriado">Feriado</option>
                                 <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                 <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
                                 <option value="PRO300_10.pro300_10">Pro 300_10</option>
                                 <option value="PRO300_11.pro300_11">Pro 300_11</option>
                                 <option value="PRO300_12.pro300_12">Pro 300_12</option>
@@ -1011,7 +1017,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
                                 <option value="PRO300_18.pro300_18">Pro 300_18</option>
                                 <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                               <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
                                 <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
@@ -1021,7 +1027,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <option value="PRO300_11.pro300_11">Pro 300_11</option>
                                 <option value="PRO300_12.pro300_12">Pro 300_12</option>
                                 <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                 <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
                                 <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
@@ -1153,13 +1159,14 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                         <div class="form-group">
                             <label for="setor" class="col-sm-3 control-label">Setor:</label>
                             <div class="col-sm-6">
-                               
-                                   
-                                    <input type="text" class="form-control" name="setor" id="setor"   placeholder="Digite o setor">
-                               
+
+
+                                <input type="text" class="form-control" name="setor" id="setor"
+                                    placeholder="Digite o setor">
+
                             </div>
                         </div>
-                        
+
 
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-3 control-label">Início:</label>
@@ -1206,7 +1213,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                   if( $userDepartamento == "DETEC") { ?>
                                     <option value="FERIADO.Feriado">Feriado</option>
                                     <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                      <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                    <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
                                     <option value="PRO300_10.pro300_10">Pro 300_10</option>
                                     <option value="PRO300_11.pro300_11">Pro 300_11</option>
                                     <option value="PRO300_12.pro300_12">Pro 300_12</option>
@@ -1227,36 +1234,42 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                     <?php } elseif ($userDepartamento == "GABINETE" ) { ?>
                                     <option value="PRO300_18.pro300_18">Pro 300_18</option>
                                     <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                   <!--   <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
-                                    <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
+                                    <<<<<<< HEAD <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                        =======
+                                        <!--   <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                        >>>>>>> vinicius_branch
+                                        <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
 
-                                    <?php } elseif ($userDepartamento == "DEDES" ) { ?>
-                                    <option value="PRO300_10.pro300_10">Pro 300_10</option>
-                                    <option value="PRO300_11.pro300_11">Pro 300_11</option>
-                                    <option value="PRO300_12.pro300_12">Pro 300_12</option>
-                                    <!--<option value="PRO500_07.pro500_07">Pro 500_07</option>-->
-                                    <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                    <!--  <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
-                                    <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
+                                        <?php } elseif ($userDepartamento == "DEDES" ) { ?>
+                                        <option value="PRO300_10.pro300_10">Pro 300_10</option>
+                                        <option value="PRO300_11.pro300_11">Pro 300_11</option>
+                                        <option value="PRO300_12.pro300_12">Pro 300_12</option>
+                                        <!--<option value="PRO500_07.pro500_07">Pro 500_07</option>-->
+                                        <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
+                                        <!--  <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                        <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
 
-                                    <?php } elseif ($userDepartamento == "DENSE" ) { ?>
-                                    <option value="PRO300_14.pro300_14">Pro 300_14</option>
-                                    <option value="PRO300_15.pro300_15">Pro 300_15</option>
-                                    <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
+                                        <?php } elseif ($userDepartamento == "DENSE" ) { ?>
+                                        <option value="PRO300_14.pro300_14">Pro 300_14</option>
+                                        <option value="PRO300_15.pro300_15">Pro 300_15</option>
+                                        <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
-                                    <?php } elseif ($userDepartamento == "DINSE" ) { ?>
-                                    <option value="PRO300_13.pro300_13">Pro 300_13</option>
-                                     <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
+                                        <?php } elseif ($userDepartamento == "DINSE" ) { ?>
+                                        <option value="PRO300_13.pro300_13">Pro 300_13</option>
+                                        <<<<<<< HEAD <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
+                                            =======
+                                            <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
+                                            >>>>>>> vinicius_branch
 
 
-                                    <?php } elseif ($nivelLogado == 7 ) { ?>
-                                    <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
+                                            <?php } elseif ($nivelLogado == 7 ) { ?>
+                                            <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
-                                    <?php } ?>
+                                            <?php } ?>
 
                                 </select>
                             </div>

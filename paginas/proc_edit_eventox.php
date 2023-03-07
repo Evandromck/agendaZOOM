@@ -78,8 +78,6 @@ $endMaior = converteDataMaior($end);//pega o fim do evento mais 110 minutos
 
 
 $aud = filter_input(INPUT_POST, 'aud', FILTER_SANITIZE_STRING);
-$audEmerj = filter_input(INPUT_POST, 'audEmerj', FILTER_SANITIZE_STRING);
-
 $setor = filter_input(INPUT_POST, 'setor', FILTER_SANITIZE_STRING);
 $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_STRING);
 $tsinal = filter_input(INPUT_POST,'tsinal', FILTER_SANITIZE_STRING);
@@ -298,7 +296,7 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 
 		                  SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'" 
 
-					      WHERE id="'.$id.'", audEmerj="'.$audEmerj.'" ';
+					      WHERE id="'.$id.'" ';
 
 		$resultado_events = mysqli_query($conn, $result_events);
 
@@ -326,7 +324,7 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 
 		                  SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'" 
 
-					      WHERE id="'.$id.'", audEmerj="'.$audEmerj.'" ' ;    
+					      WHERE id="'.$id.'" ';
 
 		$resultado_events = mysqli_query($conn, $result_events);
 
@@ -353,7 +351,7 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 	
 							  SET responsavel="'.$responsavel.'",telefone="'.$telefone.'",email="'.$email.'",title="'.$title.'", color="'.$status_cor[1].'", start="'.$start_sem_barra.'", end="'.$end_sem_barra.'", aud="'.$aud_sigla[1].'",local="'.$local.'", setor="'.$setor.'", status="'.$status_cor[0].'", sigla="'.$aud_sigla[0].'", tsinal="'.$tsinalx[0].'", tsinal2="'.$tsinalx[1].'", formato="'.$formato.'", modificadoPor="'.$_SESSION['usuarioNome'].'", nivel_cadastro="'.$_SESSION['usuarioNiveisAcessoId'].'", modificadoEm="'.$dateTime.'" 
 	
-							  WHERE id="'.$id.'", audEmerj="'.$audEmerj.'" ';
+							  WHERE id="'.$id.'" ';
 	
 			$resultado_events = mysqli_query($conn, $result_events);
 
@@ -510,7 +508,6 @@ if (($linhaInicio < 2) && ($linhaFim < 2)){
 	    start="'.$start_sem_barra.'",
 		end="'.$end_sem_barra.'",
 	    aud="'.$aud_sigla[1].'",
-		audEmerj="'.$audEmerj.'",
 	    local="'.$local.'",
 	    setor="'.$setor.'",
 		status="'.$status_cor[0].'",

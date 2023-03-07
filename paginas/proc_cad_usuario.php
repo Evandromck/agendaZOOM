@@ -18,7 +18,10 @@ $controle = 0;//variável que quando 0 força o usuário a redefinir a senha
 $created = date('Y-m-d H:i:s');
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> vinicius_branch
 // Verifica se ja contem um email na base de dados, para não haver emails duplicados de usuários
 
 $consultaBanco = "SELECT * FROM usuarios WHERE email = '$recebeEmail'";
