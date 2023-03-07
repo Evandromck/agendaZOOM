@@ -2,11 +2,7 @@
 	$servidor = "localhost";
 	$usuario = "root";
 	$senha = "";
-<<<<<<< HEAD
-	$dbname = "dbAgenda"; 
-=======
-	$dbname = "dbemerj2";
->>>>>>> 0e0f99e18f62454e03c0d9bf5ad24812aa4b9b94
+	$dbname = "dbagenda"; 
 	try {
 			//Criar a conexao
 	$conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
