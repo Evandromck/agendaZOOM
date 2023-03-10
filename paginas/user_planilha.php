@@ -46,7 +46,7 @@
 			echo '<Script>window.alert ("Não há resultados para o filtro selecionado!")
 			window.location.href="principal.php"; 
 			</script>';
-			break;
+		 /*  break;  */
 		}
 
 		//SE HOUVER RESULTADOS, PROSSEGUE NORMAL
@@ -84,17 +84,18 @@
 			$html .= '<td>'.$data3.'</td>';
 			$html .= '</tr>';
 			
-		}
-		// Configurações header para forçar o download
-		header ("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-		header ("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
-		header ("Cache-Control: no-cache, must-revalidate");
-		header ("Pragma: no-cache");
-		header ("Content-type: application/x-msexcel");
-		header ('Content-Disposition: attachment; filename=relatorio_usuarios"' . date('d_m_Y_H_i') . '.xls');
-		header ("Content-Description: PHP Generated Data" );
-		// Envia o conteúdo do arquivo
-		echo $html;
+			
+			}
+				// Configurações header para forçar o download
+				header ("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+				header ("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
+				header ("Cache-Control: no-cache, must-revalidate");
+				header ("Pragma: no-cache");
+				header ("Content-type: application/x-msexcel");
+				header ('Content-Disposition: attachment; filename=relatorio_usuarios"' . date('d_m_Y_H_i') . '.xls');
+				header ("Content-Description: PHP Generated Data" );
+				// Envia o conteúdo do arquivo
+				echo $html;
         
 		exit; ?>
 	</body>

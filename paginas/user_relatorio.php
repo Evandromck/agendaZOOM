@@ -97,7 +97,7 @@ function getTabela($conn)
 			echo '<Script>window.alert ("Não há resultados para o filtro selecionado!")
 			window.location.href="principal.php"; 
 			</script>';
-			break;
+			/* break; */
 		}
 
 		//SE HOUVER RESULTADOS, PROSSEGUE NORMAL

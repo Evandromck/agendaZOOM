@@ -141,7 +141,7 @@ $linhaAudFim = mysqli_num_rows($verificaAudFim);
 
 
 
-if (($linhaInicio < 2) && ($linhaFim < 2) && ($linhaAudInicio < 1) && ($linhaAudFim < 1)){
+if (($linhaInicio < 1) && ($linhaFim< 1)|| ($linhaAudInicio < 1) && ($linhaAudFim < 1)){
 
 
 

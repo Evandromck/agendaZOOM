@@ -84,7 +84,7 @@
 				echo '<Script>window.alert ("Não há resultados para o filtro selecionado!")
 				window.location.href="principal.php"; 
 				</script>';
-				break;
+				/* break; */
 			}	
 		
 		// Criamos uma tabela HTML com o formato da planilha

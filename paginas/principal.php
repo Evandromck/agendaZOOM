@@ -1100,13 +1100,13 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
 
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <i class="material-icons"></i>
                         <label for="inputEmail3" class="col-sm-3 control-label">Local:</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="local" id="local" placeholder="Local">
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>
@@ -1345,14 +1345,14 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
 
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <i class="material-icons"></i>
                             <label for="inputEmail3" class="col-sm-3 control-label">Local</label>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" name="local" id="local"
                                     placeholder="Informe o local do seu evento ">
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-3 control-label">Auditório</label>

@@ -827,7 +827,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
                             <dd id="title"></dd>
                             <div id="ocultStatus">
-                                <dt>Responsável:</dt>
+                            <dt>Responsável:</dt>
                                 <dd id="responsavel"></dd>
                                 <dt>Departamento:</dt>
                                 <dd id="setor"></dd>
@@ -843,12 +843,13 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <dd id="audExibir"></dd>
                                 <dt>Transmissão:</dt>
                                 <dd id="tsinalx"></dd>
-                                <dt>Local</dt>
+                                <dt>Formato:</dt>
+                                <dd id="formatEnvent"></dd>
+                                <dt>Local:</dt>
                                 <dd id="local"></dd>
                                 <dt>Auditório:</dt>
                                 <dd id="emerjAud"></dd>
-                                <dt>Formato</dt>
-                                <dd id="formatEnvent"></dd>
+
 
 
                             </div>
