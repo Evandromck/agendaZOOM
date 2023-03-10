@@ -51,7 +51,7 @@
 
 
 
-			if ($controle == 1 and $_SESSION['usuarioNiveisAcessoId'] == 6 ){
+			if ($controle == 1 and $_SESSION['usuarioNiveisAcessoId'] >= 4  and $_SESSION['usuarioNiveisAcessoId'] <=6){
 				//Atualiza o último acesso do usuário no banco
 				$log_usuario = "UPDATE usuarios SET ultimoAcesso = '$dateTime' WHERE email = '$usuario'";
 				$resultado_log_usuario = mysqli_query($conn, $log_usuario);
@@ -61,13 +61,20 @@
 
 
 
-			elseif ($controle == 1 and $_SESSION['usuarioNiveisAcessoId'] == 5 ){
-				//Atualiza o último acesso do usuário no banco
-				$log_usuario = "UPDATE usuarios SET ultimoAcesso = '$dateTime' WHERE email = '$usuario'";
-				$resultado_log_usuario = mysqli_query($conn, $log_usuario);
+			// elseif ($controle == 1 and $_SESSION['usuarioNiveisAcessoId'] == 5 ){
+			// 	//Atualiza o último acesso do usuário no banco
+			// 	$log_usuario = "UPDATE usuarios SET ultimoAcesso = '$dateTime' WHERE email = '$usuario'";
+			// 	$resultado_log_usuario = mysqli_query($conn, $log_usuario);
 
-				header("Location: pagina_curso/principal.php");
-			}
+			// 	header("Location: pagina_curso/principal.php");
+			// }
+			// elseif ($controle == 1 and $_SESSION['usuarioNiveisAcessoId'] == 4 ){
+			// 	//Atualiza o último acesso do usuário no banco
+			// 	$log_usuario = "UPDATE usuarios SET ultimoAcesso = '$dateTime' WHERE email = '$usuario'";
+			// 	$resultado_log_usuario = mysqli_query($conn, $log_usuario);
+
+			// 	header("Location: pagina_curso/principal.php");
+			// }
 
 
 

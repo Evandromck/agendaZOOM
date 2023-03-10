@@ -396,9 +396,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     //eventos cadastrados por outros perfis não podem ser alterados por secge
                     $(".btn-cancel").hide();
                     $(".btn-canc-vis").hide();
-                } 
-                
-                else {
+                } else {
                     $(".btn-cancel").show();
                     $(".btn-canc-vis").show();
                 }
@@ -742,7 +740,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                 <select id="nomeaud" name="nomeaud" class="form-control" onChange="this.form.submit()">
                     <option value="">Filtrar evento por</option>
                     <option value="">Plataformas</option>
-                     <option value="CANC">Cancelado</option>
+                    <option value="CANC">Cancelado</option>
                     <option value="ZOOM_1000">Zoom_1000</option>
                     <option value="PRO100_01">Pro 100_01</option>
                     <option value="PRO100_02">Pro 100_02</option>
@@ -763,8 +761,8 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     <option value="INSTAGRAM">Sinal Instagram</option>
                     <option value="PRO500_07">Pro 500_07</option>
                     <option value="NÃO_SE_APLICA">Presencial</option>
-                   
-                     
+
+
 
                     <!--  <option value="TEAMS">Teams</option> -->
 
@@ -1027,7 +1025,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <option value="PRO300_10.pro300_10">Pro 300_10</option>
                                 <option value="PRO300_11.pro300_11">Pro 300_11</option>
                                 <option value="PRO300_12.pro300_12">Pro 300_12</option>
-                               <!-- <option value="PRO500_07.pro500_07">Pro 500_07</option> -->
+                                <!-- <option value="PRO500_07.pro500_07">Pro 500_07</option> -->
                                 <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
                                 <option value="ZOOM_500.Zoom_500">ZOOM_500</option>
                                 <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
@@ -1062,6 +1060,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                         <div class="col-sm-6">
                             <select name="tsinal" class="form-control" id="tsinal">
                                 <?php 
+<<<<<<< HEAD
                                                         if($nivelLogado < 4){ ?>
                                 <option value="S/ trasmissão. s/ trasmissão">Sem transmissão de sinal</option>
                                 <option value="YOUTUBE.Youtube">Youtube</option>
@@ -1073,6 +1072,23 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
 
                                 <?php } ?>
+=======
+<<<<<<< HEAD
+                                 if($nivelLogado < 4){ ?>
+                                =======
+                                if($nivelLogado < 4){ ?>
+                                    >>>>>>> vinicius_branch
+                                    <option value="S/ trasmissão. s/ trasmissão">Sem transmissão de sinal</option>
+                                    <option value="YOUTUBE.Youtube">Youtube</option>
+                                    <option value="FACEBOOK.Facebook">Facebook</option>
+                                    <option value="INSTAGRAM.Instagram">Instagram </option>
+                                    <?php } else {
+                                                        ?>
+                                    <option value="S/ trasmissão. s/ trasmissão">Sem transmissão de sinal</option>
+
+
+                                    <?php } ?>
+>>>>>>> 4f20216e74a9d5658de3028e3bf6eb4c0beb3018
                             </select>
                         </div>
                     </div>
@@ -1108,6 +1124,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                     </div>
 
 
+<<<<<<< HEAD
 
 
 
@@ -1118,6 +1135,19 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                         <button type="submit" class="btn btn-default glyphicon glyphicon-floppy-disk"> Salvar
                             Alterações</button>
                     </div>
+=======
+                    <div class="form-group"> <label for="inputEmail3" class="col-sm-3 control-label">Auditório
+
+
+                            <div class="modal-footer" style="background:#0c344c">
+                                <input type="hidden" class="form-control" name="id" id="id">
+                                <button type="button"
+                                    class="btn btn-canc-edit btn-default glyphicon glyphicon-arrow-left">
+                                    Voltar</button>
+                                <button type="submit" class="btn btn-default glyphicon glyphicon-floppy-disk"> Salvar
+                                    Alterações</button>
+                            </div>
+>>>>>>> 4f20216e74a9d5658de3028e3bf6eb4c0beb3018
                 </form>
             </div>
         </div>
@@ -1285,8 +1315,13 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                     <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
                                     <?php } elseif ($userDepartamento == "DINSE" ) { ?>
+<<<<<<< HEAD
                                 <option value="PRO100_02.pro100_02">Pro 100_02</option>
                                 <option value="PRO300_13.pro300_13">Pro 300_13</option>
+=======
+                                    <option value="PRO100_02.pro100_02">Pro 100_02</option>
+                                    <option value="PRO300_13.pro300_13">Pro 300_13</option>
+>>>>>>> 4f20216e74a9d5658de3028e3bf6eb4c0beb3018
 
 
                                     <?php } elseif ($nivelLogado == 7 ) { ?>
@@ -1338,6 +1373,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                         </div>
 
 
+<<<<<<< HEAD
 
                         <div class="form-group">
                             <i class="material-icons"></i>
@@ -1347,6 +1383,17 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                     placeholder="Informe o local do seu evento ">
                             </div>
                         </div>
+=======
+                        <<<<<<< HEAD=======>>>>>>> vinicius_branch
+                            <div class="form-group">
+                                <i class="material-icons"></i>
+                                <label for="inputEmail3" class="col-sm-3 control-label">Local</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="local" id="local"
+                                        placeholder="Informe o local do seu evento ">
+                                </div>
+                            </div>
+>>>>>>> 4f20216e74a9d5658de3028e3bf6eb4c0beb3018
 
                 </div>
 
