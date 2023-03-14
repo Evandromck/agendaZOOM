@@ -141,27 +141,23 @@ $linhaAudFim = mysqli_num_rows($verificaAudFim);
 
 
 
-if (($linhaInicio < 1) && ($linhaFim< 1)|| ($linhaAudInicio < 1) && ($linhaAudFim < 1)){
+if (($linhaInicio < 2) && ($linhaFim< 2) && ($linhaAudInicio < 2) && ($linhaAudFim < 2)){
 
 
 
 	//CASO ENCONTRE NO RESULTADO ALGUM EVENTO QUE NÃO SEJA O PRÓPRIO EVENTO EM EDIÇÃO, EMITE ALERTA E ENCERRA LÓGICA
-
-	while ($reg = mysqli_fetch_assoc($verificaInicio)) {
-
-		if($reg['id'] != $id){
-
-			echo  "<script> window.alert ('Horário já reservado no período informado!'); 
-
+	//Nessa nova implementação, a verificação de ambas as condições foi separada em uma expressão diferente para cada variável e adicionado o is_array() para garantir que as variáveis são realmente arrays.
+	
+	while ($reg = mysqli_fetch_assoc($verificaAudInicio)) { 
+		$reg2 = mysqli_fetch_assoc($verificaInicio);
+		if (!is_array($reg) || !is_array($reg2) || !$reg2 || $reg['id'] != $id || $reg2['id'] != $id) {
+			echo "<script> window.alert ('Horário já reservado no período informado!'); 
 				  window.location.href='principal.php'
-
-			  	  </script>";
-
+				  </script>";
 			return false;
-
 		}
-
 	}
+	
     
 
 

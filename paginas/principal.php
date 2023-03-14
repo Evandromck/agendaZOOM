@@ -1001,7 +1001,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
                                 <option value="FERIADO.Feriado">Feriado</option>
                                 <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                <option value="ZOOM_500.Zoom_500">ZOOM_500</option>
                                 <option value="PRO300_10.pro300_10">Pro 300_10</option>
                                 <option value="PRO300_11.pro300_11">Pro 300_11</option>
                                 <option value="PRO300_12.pro300_12">Pro 300_12</option>
@@ -1023,7 +1023,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
 
                                 <option value="PRO300_18.pro300_18">Pro 300_18</option>
                                 <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                <option value="ZOOM_500.Zoom_500">ZOOM_500</option>
                                 <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
@@ -1033,7 +1033,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                 <option value="PRO300_11.pro300_11">Pro 300_11</option>
                                 <option value="PRO300_12.pro300_12">Pro 300_12</option>
                                 <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                <option value="ZOOM_500.Zoom_500">ZOOM_500</option>
                                 <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
@@ -1248,7 +1248,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                   if( $userDepartamento == "DETEC") { ?>
                                     <option value="FERIADO.Feriado">Feriado</option>
                                     <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                    <!-- <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                    <option value="ZOOM_500.Zoom_500">ZOOM_500</option>
                                     <option value="PRO300_10.pro300_10">Pro 300_10</option>
                                     <option value="PRO300_11.pro300_11">Pro 300_11</option>
                                     <option value="PRO300_12.pro300_12">Pro 300_12</option>
@@ -1269,7 +1269,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                     <?php } elseif ($userDepartamento == "GABINETE" ) { ?>
                                     <option value="PRO300_18.pro300_18">Pro 300_18</option>
                                     <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                    <!--   <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                    <option value="ZOOM_500.Zoom_500">ZOOM_500</option>
                                     <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
@@ -1280,7 +1280,7 @@ $result_nivel_id = "SELECT nivel_acesso_id FROM usuarios";
                                     <option value="PRO300_12.pro300_12">Pro 300_12</option>
                                     <!--<option value="PRO500_07.pro500_07">Pro 500_07</option>-->
                                     <option value="ZOOM_1000.Zoom_1000">ZOOM_1000</option>
-                                    <!--  <option value="ZOOM_500.Zoom_500">ZOOM_500</option> -->
+                                    <option value="ZOOM_500.Zoom_500">ZOOM_500</option>
                                     <option value="NÃO_SE_APLICA.não_se_aplica">Não se aplica</option>
 
 
